@@ -1,0 +1,10 @@
+---
+- name: copy gitconfig
+  copy:
+    src: gitconfig
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+
+- name: copy tmux.conf
+  copy:
+    src: tmux.conf
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"

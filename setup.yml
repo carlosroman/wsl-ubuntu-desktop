@@ -1,0 +1,71 @@
+---
+- name: a playbook to setup my local machine with my basic customizations
+  hosts: local
+  connection: local
+
+  pre_tasks:
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        force_apt_get: yes
+      tags:
+        - apt
+    - name: Run apt-get autoremove
+      become: true
+      apt:
+        autoremove: yes
+        force_apt_get: yes
+      tags:
+        - apt
+    - name: Run apt-get autoremove
+      become: true
+      shell: /usr/sbin/update-ca-certificates
+      tags:
+        - apt
+
+  tasks:
+    - name: Install httpie
+      pip:
+        name: httpie
+        state: latest
+      tags:
+        - pip
+    - name: Install awscli
+      pip:
+        name: awscli
+        state: latest
+      tags:
+        - pip
+    - name: install wave dependencies
+      apt:
+        name: "{{ item }}"
+        state: latest
+        force_apt_get: yes
+        install_recommends: no
+      with_items:
+        - htop
+        - curl
+        - wget
+        - automake
+        - make
+        - m4
+        - libtool
+        - pkg-config
+        - libevent-dev
+        - libncurses-dev
+        - tree
+        - git
+      become: true
+      tags:
+        - apt
+
+  roles:
+   - dot
+   - ssh
+   - andrewrothstein.sudoers
+   - { role: golang, become: true }
+
+  post_tasks:
+    - shell: echo 'I":" Beginning to configure web server..'

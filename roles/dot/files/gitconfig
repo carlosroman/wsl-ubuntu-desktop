@@ -1,0 +1,36 @@
+[user]
+        name = Carlos Roman
+        email = carlos@cliche-corp.co.uk
+
+[color]
+        ui = true
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = red
+
+[push]
+        default = simple
+
+[alias]
+        st = status
+        ci = commit
+        br = branch
+        co = checkout
+        df = diff
+        spop = stash pop
+        sv = stash
+        sl = stash list
+        shhcomp = stash show -p stash@{0}
+        idea-clean = "!f(){ git status | grep iml | cut -f2 -d":" | xargs git checkout; git co .idea;};f"
+        add-java = "!f(){ git status | grep .java | cut -f2 -d":" | xargs git add; };f"
+        add-pom = "!f(){ git status | grep pom.xml | cut -f2 -d":" | xargs git add; };f"
+
+[core]
+        editor = vim

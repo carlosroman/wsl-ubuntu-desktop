@@ -1,0 +1,18 @@
+---
+
+- name: download golang
+  get_url:
+    url: https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
+    dest: /tmp/go.tar.gz
+    force: yes
+    checksum: "sha256:de874549d9a8d8d8062be05808509c09a88a248e77ec14eb77453530829ac02b"
+
+- name: install golang
+  unarchive:
+    src: /tmp/go.tar.gz
+    dest: /usr/local
+
+- name: remove golang download
+  file:
+    path: /tmp/go.tar.gz
+    state: absent
