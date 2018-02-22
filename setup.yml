@@ -65,7 +65,7 @@
    - dot
    - ssh
    - andrewrothstein.sudoers
-   - { role: golang, become: true }
+   - golang
 
   post_tasks:
     - shell: echo 'I":" Beginning to configure web server..'

@@ -8,6 +8,7 @@
     checksum: "sha256:de874549d9a8d8d8062be05808509c09a88a248e77ec14eb77453530829ac02b"
 
 - name: install golang
+  become: true
   unarchive:
     src: /tmp/go.tar.gz
     dest: /usr/local
@@ -16,3 +17,16 @@
   file:
     path: /tmp/go.tar.gz
     state: absent
+
+- name: bin dir present
+  file:
+    path: "{{ ansible_env.HOME }}/bin"
+    state: directory
+
+- name: get golang dep
+  get_url:
+    url: https://github.com/golang/dep/releases/download/v0.4.1/dep-linux-amd64
+    dest: "{{ ansible_env.HOME }}/bin/dep"
+    force: yes
+    checksum: "sha256:31144e465e52ffbc0035248a10ddea61a09bf28b00784fd3fdd9882c8cbb2315"
+
