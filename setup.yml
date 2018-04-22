@@ -38,7 +38,19 @@
         state: latest
       tags:
         - pip
-    - name: install wave dependencies
+    - name: Install virtualenv
+      pip:
+        name: virtualenv
+        state: latest
+      tags:
+        - pip
+    - name: Install pipenv
+      pip:
+        name: pipenv
+        state: latest
+      tags:
+        - pip
+    - name: install dependencies
       apt:
         name: "{{ item }}"
         state: latest
@@ -57,6 +69,7 @@
         - libncurses-dev
         - tree
         - git
+        - sshpass
       become: true
       tags:
         - apt
@@ -66,6 +79,7 @@
    - ssh
    - andrewrothstein.sudoers
    - golang
+   - k8s
 
   post_tasks:
     - shell: echo 'I":" Beginning to configure web server..'
