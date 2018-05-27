@@ -70,6 +70,10 @@
         - tree
         - git
         - sshpass
+        - snapcraft
+        - rpm
+        - jq
+        - build-essential
       become: true
       tags:
         - apt
