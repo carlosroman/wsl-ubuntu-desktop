@@ -74,6 +74,7 @@
         - rpm
         - jq
         - build-essential
+        - keychain
       become: true
       tags:
         - apt
