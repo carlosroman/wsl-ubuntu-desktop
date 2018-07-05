@@ -1,6 +1,10 @@
-.PHONY: desktop
+.PHONY: setup desktop
 
-desktop: 
+setup:
+	apt-get install -y python3-pip
+	pip3 install -I -r ansible-requirements.txt
+
+desktop:
 	ansible-playbook \
 		setup.yml -vv -K \
 		-i HOSTS  \
