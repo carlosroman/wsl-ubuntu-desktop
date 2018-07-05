@@ -85,6 +85,7 @@
    - andrewrothstein.sudoers
    - golang
    - k8s
+   - wsl
 
   post_tasks:
     - shell: echo 'I":" Beginning to configure web server..'
