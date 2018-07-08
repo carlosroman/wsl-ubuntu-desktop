@@ -1,3 +1,4 @@
+# Managed by Ansible dot role
 [user]
         name = Carlos Roman
         email = carlos@cliche-corp.co.uk
