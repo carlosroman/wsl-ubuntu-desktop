@@ -36,6 +36,7 @@
       pip:
         name: awscli
         state: latest
+        extra_args: --user
       tags:
         - pip
     - name: Install virtualenv
