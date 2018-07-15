@@ -7,3 +7,6 @@ alias docker="docker.exe"
 # Used for Makefiles
 export DOCKER="docker.exe"
 
+# last status
+alias last-status="echo $?"
+
