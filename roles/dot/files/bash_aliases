@@ -1,3 +1,7 @@
 # Managed by Ansible dot role
 
 export PATH=/usr/local/go/bin:$PATH
+
+# Alias Widnows Docker executable to Linux Docker
+alias docker="docker.exe"
+
