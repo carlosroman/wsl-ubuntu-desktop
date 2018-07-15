@@ -4,4 +4,6 @@ export PATH=/usr/local/go/bin:$PATH
 
 # Alias Widnows Docker executable to Linux Docker
 alias docker="docker.exe"
+# Used for Makefiles
+export DOCKER="docker.exe"
 
