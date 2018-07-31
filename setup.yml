@@ -81,12 +81,12 @@
         - apt
 
   roles:
-   - dot
-   - ssh
-   - andrewrothstein.sudoers
-   - golang
-   - k8s
-   - wsl
+   - { role: dot, tags: [dot, bash] }
+   - { role: ssh, tags: [ssh] }
+   - { role: andrewrothstein.sudoers, tags: [sudo] }
+   - { role: golang, tags: [golang] }
+   - { role: k8s, tags: [k8s] }
+   - { role: wsl, tags: [wsl] }
 
   post_tasks:
     - shell: echo 'I":" Beginning to configure web server..'
