@@ -83,6 +83,7 @@
         - jq
         - build-essential
         - keychain
+        - unzip
       become: true
       tags:
         - apt
