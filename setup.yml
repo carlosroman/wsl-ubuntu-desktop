@@ -58,6 +58,13 @@
         extra_args: --user
       tags:
         - pip
+    - name: Install AWS SAM CLI
+      pip:
+        name: aws-sam-cli
+        state: latest
+        extra_args: --user
+      tags:
+        - pip
     - name: install dependencies
       apt:
         name: "{{ item }}"
