@@ -92,6 +92,7 @@
         - keychain
         - unzip
         - ack-grep
+        - direnv
       become: true
       tags:
         - apt
