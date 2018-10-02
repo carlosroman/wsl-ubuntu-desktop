@@ -91,6 +91,7 @@
         - build-essential
         - keychain
         - unzip
+        - ack-grep
       become: true
       tags:
         - apt
