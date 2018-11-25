@@ -2,6 +2,7 @@
 - name: a playbook to setup my local machine with my basic customizations
   hosts: local
   connection: local
+  gather_facts: false
 
   pre_tasks:
     - name: Update and upgrade apt packages
@@ -93,6 +94,8 @@
         - unzip
         - ack-grep
         - direnv
+        - p7zip-full
+        - p7zip-rar
       become: true
       tags:
         - apt
