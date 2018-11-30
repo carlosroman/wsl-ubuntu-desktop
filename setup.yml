@@ -96,6 +96,7 @@
         - direnv
         - p7zip-full
         - p7zip-rar
+        - python3-venv
       become: true
       tags:
         - apt
