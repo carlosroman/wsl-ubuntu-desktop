@@ -8,7 +8,10 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 
 setup:
 	apt-get install -y python3-pip
-	pip3 install -I -r ansible-requirements.txt
+	pip3 install \
+		--upgrade \
+		--ignore-installed \
+		--requirement ansible-requirements.txt
 
 desktop-dot: TAGS = -t 'dot'
 desktop-dot: desktop-tags
