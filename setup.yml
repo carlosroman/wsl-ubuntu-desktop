@@ -27,6 +27,40 @@
         - apt
 
   tasks:
+    - name: install dependencies
+      apt:
+        name: "{{ item }}"
+        state: latest
+        force_apt_get: yes
+        install_recommends: no
+      with_items:
+        - htop
+        - curl
+        - wget
+        - automake
+        - make
+        - m4
+        - libtool
+        - pkg-config
+        - libevent-dev
+        - libncurses-dev
+        - tree
+        - git
+        - sshpass
+        - snapcraft
+        - rpm
+        - jq
+        - build-essential
+        - keychain
+        - unzip
+        - ack-grep
+        - direnv
+        - p7zip-full
+        - p7zip-rar
+        - python3-venv
+      become: true
+      tags:
+        - apt
     - name: Install httpie
       pip:
         name: httpie
@@ -66,40 +100,6 @@
         extra_args: --user
       tags:
         - pip
-    - name: install dependencies
-      apt:
-        name: "{{ item }}"
-        state: latest
-        force_apt_get: yes
-        install_recommends: no
-      with_items:
-        - htop
-        - curl
-        - wget
-        - automake
-        - make
-        - m4
-        - libtool
-        - pkg-config
-        - libevent-dev
-        - libncurses-dev
-        - tree
-        - git
-        - sshpass
-        - snapcraft
-        - rpm
-        - jq
-        - build-essential
-        - keychain
-        - unzip
-        - ack-grep
-        - direnv
-        - p7zip-full
-        - p7zip-rar
-        - python3-venv
-      become: true
-      tags:
-        - apt
 
   roles:
    - { role: dot, tags: [dot, bash] }
