@@ -58,6 +58,7 @@
         - p7zip-full
         - p7zip-rar
         - python3-venv
+        - mingw-w64
       become: true
       tags:
         - apt
