@@ -7,7 +7,7 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 		--vault-password-file=/home/carlosr/.ansible_pass
 
 setup:
-	apt-get install -y python3-pip
+	apt-get install -y python3-pip python3-apt
 	pip3 install \
 		--upgrade \
 		--ignore-installed \
