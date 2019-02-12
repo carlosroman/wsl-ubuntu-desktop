@@ -82,12 +82,6 @@
         state: latest
       tags:
         - pip
-    - name: Install pipenv
-      pip:
-        name: pipenv
-        state: latest
-      tags:
-        - pip
     - name: Install CloudFormation Linter
       pip:
         name: cfn-lint
