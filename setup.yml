@@ -34,6 +34,7 @@
         force_apt_get: yes
         install_recommends: no
       with_items:
+        - vim 
         - htop
         - curl
         - wget
