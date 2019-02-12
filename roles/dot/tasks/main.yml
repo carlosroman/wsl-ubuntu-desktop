@@ -2,19 +2,19 @@
 - name: copy gitconfig
   copy:
     src: gitconfig
-    dest: "{{ ansible_env.HOME }}/.gitconfig"
+    dest: "{{ lookup('env','HOME') }}/.gitconfig"
     force: true
 
 - name: copy tmux.conf
   copy:
     src: tmux.conf
-    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    dest: "{{ lookup('env','HOME') }}/.tmux.conf"
     force: true
 
 - name: copy bash_aliases
   copy:
     src: bash_aliases
-    dest: "{{ ansible_env.HOME }}/.bash_aliases"
+    dest: "{{ lookup('env','HOME') }}/.bash_aliases"
     force: true
 
 - name: copy profile.d/10-keychain.sh
