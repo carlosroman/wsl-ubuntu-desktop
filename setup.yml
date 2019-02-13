@@ -60,9 +60,11 @@
         - p7zip-rar
         - python3-venv
         - mingw-w64
+        - openjdk-8-jdk-headless
       become: true
       tags:
         - apt
+        - java
     - name: Install httpie
       pip:
         name: httpie
@@ -102,6 +104,7 @@
    - { role: ssh, tags: [ssh] }
    - { role: andrewrothstein.sudoers, tags: [sudo] }
    - { role: golang, tags: [golang] }
+   - { role: java, tags: [java] }
    - { role: k8s, tags: [k8s] }
    - { role: wsl, tags: [wsl] }
 

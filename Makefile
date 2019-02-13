@@ -25,6 +25,9 @@ desktop-sudo: desktop-tags
 desktop-golang: TAGS = -t 'golang'
 desktop-golang: desktop-tags
 
+desktop-java: TAGS = -t 'java'
+desktop-java: desktop-tags
+
 desktop-k8s: TAGS = -t 'k8s'
 desktop-k8s: desktop-tags
 

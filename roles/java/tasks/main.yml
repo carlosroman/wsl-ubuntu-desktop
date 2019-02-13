@@ -1,0 +1,32 @@
+---
+- name: remove old Maven
+  file:
+    path: /usr/local/apache-maven
+    state: absent
+  become: true
+
+- name: download Maven
+  get_url:
+    url: http://mirrors.london-do.gethosted.online/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+    dest: /tmp/apache-maven.tar.gz
+    force: yes
+    checksum: "sha512:fae9c12b570c3ba18116a4e26ea524b29f7279c17cbaadc3326ca72927368924d9131d11b9e851b8dc9162228b6fdea955446be41207a5cfc61283dd8a561d2f"
+
+- name: create Maven dir
+  file:
+    path: /usr/local/apache-maven
+    state: directory
+  become: true
+
+- name: install Maven
+  unarchive:
+    src: /tmp/apache-maven.tar.gz
+    dest: /usr/local/apache-maven
+    extra_opts: [--strip-components=1]
+  become: true
+
+- name: remove Maven download
+  file:
+    path: /tmp/apache-maven.tar.gz
+    state: absent
+
