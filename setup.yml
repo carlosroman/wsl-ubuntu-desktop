@@ -62,6 +62,8 @@
         - mingw-w64
         - openjdk-8-jdk-headless
         - pass
+        - gnupg2
+        - traceroute
       become: true
       tags:
         - apt
