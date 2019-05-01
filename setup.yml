@@ -8,16 +8,16 @@
     - name: Update and upgrade apt packages
       become: true
       apt:
-        upgrade: yes
-        update_cache: yes
-        force_apt_get: yes
+        upgrade: true
+        update_cache: true
+        force_apt_get: true
       tags:
         - apt
     - name: Run apt-get autoremove
       become: true
       apt:
-        autoremove: yes
-        force_apt_get: yes
+        autoremove: true
+        force_apt_get: true
       tags:
         - apt
     - name: Run apt-get autoremove
@@ -31,8 +31,8 @@
       apt:
         name: "{{ item }}"
         state: latest
-        force_apt_get: yes
-        install_recommends: no
+        force_apt_get: true
+        install_recommends: false
       with_items:
         - vim
         - htop
@@ -116,13 +116,13 @@
         - pip
 
   roles:
-    - { role: dot, tags: [dot, bash] }
-    - { role: ssh, tags: [ssh] }
-    - { role: andrewrothstein.sudoers, tags: [sudo] }
-    - { role: golang, tags: [golang] }
-    - { role: java, tags: [java] }
-    - { role: k8s, tags: [k8s] }
-    - { role: wsl, tags: [wsl] }
+    - {role: dot, tags: [dot, bash]}
+    - {role: ssh, tags: [ssh]}
+    - {role: andrewrothstein.sudoers, tags: [sudo]}
+    - {role: golang, tags: [golang]}
+    - {role: java, tags: [java]}
+    - {role: k8s, tags: [k8s]}
+    - {role: wsl, tags: [wsl]}
 
   post_tasks:
     - shell: echo 'I":" Beginning to configure web server..'
