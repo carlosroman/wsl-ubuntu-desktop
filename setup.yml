@@ -34,7 +34,7 @@
         force_apt_get: yes
         install_recommends: no
       with_items:
-        - vim 
+        - vim
         - htop
         - curl
         - wget
@@ -64,10 +64,23 @@
         - pass
         - gnupg2
         - traceroute
+        - zlib1g-dev
+        - libssl-dev
+        - libreadline-dev
+        - libbz2-dev
+        - libsqlite3-dev
       become: true
       tags:
         - apt
         - java
+    - name: Install httpie
+      git:
+        repo: 'https://github.com/pyenv/pyenv.git'
+        dest: "{{ lookup('env','HOME') }}/.pyenv"
+        version: v1.2.11
+      tags:
+        - apt
+        - python
     - name: Install httpie
       pip:
         name: httpie
@@ -103,13 +116,13 @@
         - pip
 
   roles:
-   - { role: dot, tags: [dot, bash] }
-   - { role: ssh, tags: [ssh] }
-   - { role: andrewrothstein.sudoers, tags: [sudo] }
-   - { role: golang, tags: [golang] }
-   - { role: java, tags: [java] }
-   - { role: k8s, tags: [k8s] }
-   - { role: wsl, tags: [wsl] }
+    - { role: dot, tags: [dot, bash] }
+    - { role: ssh, tags: [ssh] }
+    - { role: andrewrothstein.sudoers, tags: [sudo] }
+    - { role: golang, tags: [golang] }
+    - { role: java, tags: [java] }
+    - { role: k8s, tags: [k8s] }
+    - { role: wsl, tags: [wsl] }
 
   post_tasks:
     - shell: echo 'I":" Beginning to configure web server..'
