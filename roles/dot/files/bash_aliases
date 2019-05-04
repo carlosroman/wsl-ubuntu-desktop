@@ -4,8 +4,10 @@ export PATH=/usr/local/go/bin:$PATH
 
 # Alias Widnows Docker executable to Linux Docker
 alias docker="docker.exe"
+alias docker-compose="docker-compose.exe"
 # Used for Makefiles
 export DOCKER="docker.exe"
+export DOCKER_COMPOSE="docker-compose.exe"
 
 # last status
 alias last-status="echo $?"
