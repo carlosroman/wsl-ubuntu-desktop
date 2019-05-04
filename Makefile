@@ -40,6 +40,9 @@ desktop-apt: desktop-tags
 desktop-pip: TAGS = -t 'pip'
 desktop-pip: desktop-tags
 
+desktop-adr: TAGS = -t 'adr'
+desktop-adr: desktop-tags
+
 desktop-tags:
 	$(ANSIBLE_PLAYBOOK) ${TAGS}
 
