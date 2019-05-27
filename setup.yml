@@ -69,6 +69,8 @@
         - libreadline-dev
         - libbz2-dev
         - libsqlite3-dev
+        - ipcalc
+        - dos2unix
       become: true
       tags:
         - apt
