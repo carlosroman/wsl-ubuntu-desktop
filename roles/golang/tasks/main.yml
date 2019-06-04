@@ -7,10 +7,10 @@
 
 - name: download golang
   get_url:
-    url: https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+    url: https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
     dest: /tmp/go.tar.gz
     force: yes
-    checksum: "sha256:b3fcf280ff86558e0559e185b601c9eade0fd24c900b4c63cd14d1d38613e499"
+    checksum: "sha256:aea86e3c73495f205929cfebba0d63f1382c8ac59be081b6351681415f4063cf"
 
 - name: install golang
   unarchive:
