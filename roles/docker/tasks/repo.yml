@@ -11,4 +11,5 @@
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
     state: present
+    filename: docker
   when: ansible_distribution == 'Ubuntu'

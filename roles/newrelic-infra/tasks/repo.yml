@@ -11,4 +11,5 @@
   apt_repository:
     repo: deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt {{ ansible_lsb.codename }} main
     state: present
+    filename: newrelic-infra
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
