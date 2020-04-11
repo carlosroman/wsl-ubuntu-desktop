@@ -38,4 +38,3 @@
     dest: "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
   tags:
     - ssh
-

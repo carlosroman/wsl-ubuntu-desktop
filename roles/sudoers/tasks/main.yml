@@ -1,0 +1,8 @@
+---
+- name: enable passwordless sudo for current user
+  become: true
+  become_user: root
+  template:
+    src: etc/sudoers.d/nopasswd.j2
+    dest: '/etc/sudoers.d/{{sudoers_username}}'
+    mode: 0440

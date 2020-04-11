@@ -1,0 +1,24 @@
+---
+# docker-ce docker-ce-cli containerd.io
+- name: Install Docker
+  become: true
+  package:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: latest
+
+- name: Start Docker
+  become: true
+  service:
+    name: docker
+    enabled: true
+    state: reloaded
+
+- name: Add user to Docker
+  become: true
+  user:
+    name: '{{ current_username }}'
+    append: true
+    group: docker

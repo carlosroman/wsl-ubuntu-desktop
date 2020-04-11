@@ -1,0 +1,12 @@
+---
+- name: Install global Python packages
+  pip:
+    name:
+      - httpie
+      - wheel
+      - yamllint
+    state: latest
+  become: true
+  tags:
+    - pacakges
+    - pip

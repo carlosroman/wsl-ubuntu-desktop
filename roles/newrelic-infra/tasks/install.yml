@@ -1,0 +1,22 @@
+---
+- name: Setup config file
+  become: true
+  become_user: root
+  template:
+    src: etc/newrelic-infra.yml.j2
+    dest: /etc/newrelic-infra.yml
+    mode: 0440
+
+- name: Install New Relic Infrastructure agent
+  become: true
+  package:
+    name:
+      - newrelic-infra
+    state: latest
+
+- name: Reload New Relic Infrastructure agent
+  become: true
+  service:
+    name: newrelic-infra
+    enabled: true
+    state: restarted

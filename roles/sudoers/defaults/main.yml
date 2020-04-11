@@ -1,0 +1,2 @@
+---
+sudoers_username: "{{ lookup('env','USER') }}"
