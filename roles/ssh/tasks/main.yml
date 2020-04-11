@@ -6,35 +6,25 @@
     path: "{{ lookup('env','HOME') }}/.ssh"
     state: directory
     mode: 0700
-  tags:
-    - ssh
 
 - name: Create id_rsa file
   file:
     path: "{{ lookup('env','HOME') }}/.ssh/id_rsa"
     state: touch
     mode: 0600
-  tags:
-    - ssh
 
 - name: Copy id_rsa file
   copy:
     content: "{{ ssh.id_rsa.prvt }}"
     dest: "{{ lookup('env','HOME') }}/.ssh/id_rsa"
-  tags:
-    - ssh
 
 - name: Create id_rsa.pub file
   file:
     path: "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
     state: touch
     mode: 0600
-  tags:
-    - ssh
 
 - name: Copy id_rsa.pub file
   copy:
     content: "{{ ssh.id_rsa.pub }}"
     dest: "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
-  tags:
-    - ssh
