@@ -42,10 +42,6 @@
       - tmux
     state: latest
   become: true
-  tags:
-    - apt
-    - rpm
-    - packages
 
 - name: Install ubuntu packages
   package:
@@ -56,6 +52,3 @@
       - build-essential
   become: true
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags:
-    - apt
-    - packages

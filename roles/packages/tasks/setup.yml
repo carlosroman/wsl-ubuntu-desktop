@@ -1,0 +1,5 @@
+---
+- name: Create Home bin
+  file:
+    path: "{{ lookup('env','HOME') }}/bin"
+    state: directory
