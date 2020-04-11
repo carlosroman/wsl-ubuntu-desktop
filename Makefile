@@ -52,6 +52,9 @@ desktop-pip: desktop-tags
 desktop-adr: TAGS = -t 'adr'
 desktop-adr: desktop-tags
 
+desktop-vscode: TAGS = -t 'vscode'
+desktop-vscode: desktop-tags
+
 desktop-newrelic-infra: TAGS = -t 'newrelic-infra'
 desktop-newrelic-infra: desktop-tags
 
