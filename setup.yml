@@ -12,4 +12,7 @@
   - {role: docker, tags: [docker]}
   - {role: vscode, tags: [vscode]}
   - {role: limits, tags: [limits]}
-  - {role: newrelic-infra, tags: [newrelic-infra], vars: {license_key: "{{ nri_license_key }}"}}
+  - role: newrelic-infra
+    tags: [newrelic-infra]
+    vars:
+      license_key: "{{ nri_license_key }}"

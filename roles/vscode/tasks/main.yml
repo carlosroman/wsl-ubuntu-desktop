@@ -9,7 +9,10 @@
 - name: Add APT repo
   become: true
   apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+    repo: 'deb [arch=amd64]
+      https://packages.microsoft.com/repos/vscode
+      stable
+      main'
     state: present
     filename: vscode
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
