@@ -1,0 +1,56 @@
+---
+- name: Enable PAM limits common-session
+  become: true
+  pamd:
+    name: common-session
+    type: session
+    control: required
+    module_path: pam_unix.so
+    new_type: session
+    new_control: required
+    new_module_path: pam_limits.so
+    state: after
+
+- name: Enable PAM limits common-session-noninteractive
+  become: true
+  pamd:
+    name: common-session-noninteractive
+    type: session
+    control: required
+    module_path: pam_unix.so
+    new_type: session
+    new_control: required
+    new_module_path: pam_limits.so
+    state: after
+
+- name: Update soft nolfile limits
+  become: true
+  pam_limits:
+    domain: '{{ current_username }}'
+    limit_type: soft
+    limit_item: nofile
+    value: 65535
+
+- name: Update hard nolfile limits
+  become: true
+  pam_limits:
+    domain: '{{ current_username }}'
+    limit_type: hard
+    limit_item: nofile
+    value: 65535
+
+- name: Update soft nproc limits
+  become: true
+  pam_limits:
+    domain: '{{ current_username }}'
+    limit_type: soft
+    limit_item: nproc
+    value: 65535
+
+- name: Update hard nproc limits
+  become: true
+  pam_limits:
+    domain: '{{ current_username }}'
+    limit_type: hard
+    limit_item: nproc
+    value: 65535

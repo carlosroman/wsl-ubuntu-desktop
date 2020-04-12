@@ -55,6 +55,9 @@ desktop-adr: desktop-tags
 desktop-vscode: TAGS = -t 'vscode'
 desktop-vscode: desktop-tags
 
+desktop-limits: TAGS = -t 'limits'
+desktop-limits: desktop-tags
+
 desktop-newrelic-infra: TAGS = -t 'newrelic-infra'
 desktop-newrelic-infra: desktop-tags
 
@@ -63,3 +66,7 @@ desktop-tags:
 
 desktop:
 	$(ANSIBLE_PLAYBOOK)
+
+. PHONY : lint
+lint:
+	@(yamllint .)

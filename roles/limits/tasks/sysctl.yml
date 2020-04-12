@@ -1,0 +1,18 @@
+---
+- name: set max_user_watches
+  become: true
+  sysctl:
+    name: fs.inotify.max_user_watches
+    value: 524288
+    sysctl_set: true
+    state: present
+    reload: true
+
+- name: set fs.file-max
+  become: true
+  sysctl:
+    name: fs.file-max
+    value: 300000
+    sysctl_set: true
+    state: present
+    reload: true
