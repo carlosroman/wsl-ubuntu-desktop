@@ -26,7 +26,7 @@
 - name: Update soft nolfile limits
   become: true
   pam_limits:
-    domain: '{{ current_username }}'
+    domain: "*"
     limit_type: soft
     limit_item: nofile
     value: 65535
@@ -34,7 +34,7 @@
 - name: Update hard nolfile limits
   become: true
   pam_limits:
-    domain: '{{ current_username }}'
+    domain: "*"
     limit_type: hard
     limit_item: nofile
     value: 65535
@@ -42,7 +42,7 @@
 - name: Update soft nproc limits
   become: true
   pam_limits:
-    domain: '{{ current_username }}'
+    domain: "*"
     limit_type: soft
     limit_item: nproc
     value: 65535
@@ -50,7 +50,7 @@
 - name: Update hard nproc limits
   become: true
   pam_limits:
-    domain: '{{ current_username }}'
+    domain: "*"
     limit_type: hard
     limit_item: nproc
     value: 65535
