@@ -21,4 +21,5 @@
   user:
     name: '{{ current_username }}'
     append: true
-    group: docker
+    groups:
+      - docker
