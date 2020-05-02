@@ -40,6 +40,7 @@
       - sudo
       - ca-certificates
       - tmux
+      - sshfs
     state: latest
   become: true
 
