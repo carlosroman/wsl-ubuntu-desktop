@@ -58,6 +58,9 @@ desktop-vscode: desktop-tags
 desktop-limits: TAGS = -t 'limits'
 desktop-limits: desktop-tags
 
+desktop-chrome: TAGS = -t 'chrome'
+desktop-chrome: desktop-tags
+
 desktop-newrelic-infra: TAGS = -t 'newrelic-infra'
 desktop-newrelic-infra: desktop-tags
 

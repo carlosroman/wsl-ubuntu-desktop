@@ -1,0 +1,19 @@
+---
+- name: Add APT key
+  become: true
+  apt_key:
+    url: >
+        https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state: present
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Add APT repo
+  become: true
+  apt_repository:
+    repo: 'deb [arch=amd64]
+        http://dl.google.com/linux/chrome/deb/
+        stable
+        main'
+    state: present
+    filename: chrome
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'

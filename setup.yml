@@ -12,6 +12,7 @@
   - {role: docker, tags: [docker]}
   - {role: vscode, tags: [vscode]}
   - {role: limits, tags: [limits]}
+  - {role: chrome, tags: [chrome]}
   - role: newrelic-infra
     tags: [newrelic-infra]
     vars:
