@@ -1,22 +1,48 @@
 .PHONY: setup desktop desktop-*
 
+CHECk =
+ifdef CHECK
+CHECK = --check
+endif
+
 ANSIBLE_PLAYBOOK := ansible-playbook \
-		setup.yml -vv -K \
-		-i HOSTS  \
-		-e 'ansible_python_interpreter="/usr/bin/python3"' \
+		setup.yml \
+		--verbose \
+		--ask-become-pass \
+		$(CHECK) \
+		--inventory-file HOSTS \
+		--extra-vars 'ansible_python_interpreter="/usr/bin/python3"' \
 		--vault-password-file=${HOME}/.ansible_pass
 
-setup:
-	apt-get install -y python3-pip python3-apt python3-venv
-	pip3 install \
+.PHONY: setup/apt
+setup/apt:
+	apt-get install -y python3-apt python3-venv build-essential
+
+.PHONY: version
+version:
+	@ansible --version
+
+venv:
+	@(python3 -m venv venv)
+
+.PHONY: setup/
+setup/venv: venv
+
+.PHONY: setup/python
+setup/python:
+	@pip install \
+		--upgrade \
+		wheel
+	@pip install \
 		--upgrade \
 		--ignore-installed \
 		--requirement ansible-requirements.txt
+
 .PHONY : setup/ansible
 setup/ansible:
 	@(ansible-galaxy install -r requirements.yml)
 
-desktop-dot: TAGS = -t 'dot'
+desktop-dot: TAGS = -t 'dot' -t 'ssh'
 desktop-dot: desktop-tags
 
 desktop-ssh: TAGS = -t 'ssh'
@@ -69,6 +95,14 @@ desktop-tags:
 
 desktop:
 	$(ANSIBLE_PLAYBOOK)
+
+.PHONY: bob-go
+bob-go: TAGS += -t 'wsl'
+bob-go: TAGS += -t 'packages'
+bob-go: TAGS += -t 'sudo'
+bob-go: TAGS += -t 'ssh'
+bob-go: TAGS += -t 'dot'
+bob-go: desktop-tags
 
 . PHONY : lint
 lint:
