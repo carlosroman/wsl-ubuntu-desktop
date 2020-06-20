@@ -5,5 +5,5 @@
       - httpie
       - wheel
       - yamllint
+    virtualenv: "{{ lookup('env','HOME') }}/venv"
     state: latest
-  become: true

@@ -10,14 +10,11 @@
       - make
       - m4
       - libtool
-      - pkg-config
       - libevent-dev
       - libncurses-dev
       - tree
       - git
       - sshpass
-      - snapcraft
-      - rpm
       - jq
       - keychain
       - unzip
@@ -36,7 +33,6 @@
       - libsqlite3-dev
       - ipcalc
       - dos2unix
-      - python3-venv
       - sudo
       - ca-certificates
       - tmux
@@ -47,6 +43,7 @@
 - name: Install ubuntu packages
   package:
     name:
+      - pkg-config
       - rpm
       - apt-transport-https
       - software-properties-common
