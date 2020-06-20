@@ -1,0 +1,7 @@
+---
+- name: create /etx/wsl.conf
+  template:
+    src: etc/wsl.conf.j2
+    dest: /etc/wsl.conf
+  become: true
+  become_user: root
