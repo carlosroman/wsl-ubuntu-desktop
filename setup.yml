@@ -6,6 +6,7 @@
   roles:
   - {role: dot, tags: [dot, bash]}
   - {role: ssh, tags: [ssh]}
+  - {role: wsl, tags: [wsl]}
   - {role: packages, tags: [packages]}
   - {role: sudoers, tags: [sudo]}
   - {role: docker, tags: [docker]}

@@ -16,7 +16,7 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 
 .PHONY: setup/apt
 setup/apt:
-	apt-get install -y python3-apt python3-venv build-essential
+	apt-get install -y python3-apt python3-venv
 
 .PHONY: version
 version:
@@ -95,6 +95,14 @@ desktop-tags:
 
 desktop:
 	$(ANSIBLE_PLAYBOOK)
+
+.PHONY: bob-book
+bob-book: TAGS += -t 'wsl'
+bob-book: TAGS += -t 'packages'
+bob-book: TAGS += -t 'sudo'
+bob-book: TAGS += -t 'ssh'
+bob-book: TAGS += -t 'dot'
+bob-book: desktop-tags
 
 .PHONY: bob-go
 bob-go: TAGS += -t 'wsl'

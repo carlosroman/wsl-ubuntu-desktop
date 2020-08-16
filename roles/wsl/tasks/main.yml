@@ -1,5 +1,5 @@
 ---
-- name: create /etx/wsl.conf
+- name: create /etc/wsl.conf
   template:
     src: etc/wsl.conf.j2
     dest: /etc/wsl.conf
