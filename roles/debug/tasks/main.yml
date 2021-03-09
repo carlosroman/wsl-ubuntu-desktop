@@ -1,0 +1,34 @@
+---
+- name: Print id_rsa pub key
+  ansible.builtin.debug:
+    msg: "ansible_distribution: {{ ssh.id_rsa.pub }}"
+
+- name: Print ansible_distribution
+  ansible.builtin.debug:
+    msg: "ansible_distribution: {{ ansible_distribution }}"
+
+- name: Print ansible_system
+  ansible.builtin.debug:
+    msg: "ansible_system: {{ ansible_system }}"
+
+- name: Print ansible_user_dir
+  ansible.builtin.debug:
+    msg: "ansible_user_dir: {{ ansible_user_dir }}"
+
+- name: Print env HOME
+  ansible.builtin.debug:
+    msg: "lookup env HOME {{ lookup('env','HOME') }}"
+
+- name: Print ansible_user_dir as "become"
+  become: true
+  ansible.builtin.debug:
+    msg: "ansible_user_dir: {{ ansible_user_dir }}"
+
+- name: Print env HOME as "become"
+  become: true
+  ansible.builtin.debug:
+    msg: "lookup env HOME {{ lookup('env','HOME') }}"
+
+- name: Print ansible_architecture
+  ansible.builtin.debug:
+    msg: "ansible_architecture: {{ ansible_architecture }}"

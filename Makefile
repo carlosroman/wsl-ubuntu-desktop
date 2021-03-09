@@ -5,14 +5,16 @@ ifdef CHECK
 CHECK = --check
 endif
 
+ANSIBLE_EXTRA_ARGS := --inventory-file HOSTS \
+		--extra-vars 'ansible_python_interpreter="/usr/bin/python3"' \
+		--vault-password-file=${HOME}/.ansible_pass
+
 ANSIBLE_PLAYBOOK := ansible-playbook \
 		setup.yml \
 		--verbose \
 		--ask-become-pass \
 		$(CHECK) \
-		--inventory-file HOSTS \
-		--extra-vars 'ansible_python_interpreter="/usr/bin/python3"' \
-		--vault-password-file=${HOME}/.ansible_pass
+		$(ANSIBLE_EXTRA_ARGS)
 
 .PHONY: setup/apt
 setup/apt:
@@ -40,7 +42,10 @@ setup/python:
 
 .PHONY : setup/ansible
 setup/ansible:
-	@(ansible-galaxy install -r requirements.yml)
+	@(ansible-galaxy install -r ansible-galaxy-requirements.yml)
+
+desktop-debug: TAGS = -t 'debug'
+desktop-debug: desktop-tags
 
 desktop-dot: TAGS = -t 'dot' -t 'ssh'
 desktop-dot: desktop-tags
@@ -81,6 +86,9 @@ desktop-adr: desktop-tags
 desktop-vscode: TAGS = -t 'vscode'
 desktop-vscode: desktop-tags
 
+desktop-osx: TAGS = -t 'osx'
+desktop-osx: desktop-tags
+
 desktop-limits: TAGS = -t 'limits'
 desktop-limits: desktop-tags
 
@@ -112,6 +120,16 @@ bob-go: TAGS += -t 'ssh'
 bob-go: TAGS += -t 'dot'
 bob-go: desktop-tags
 
-. PHONY : lint
+.PHONY: red-osx
+red-osx: TAGS += -t 'osx'
+red-osx: TAGS += -t 'dot'
+red-osx: TAGS += -t 'ssh'
+red-osx: desktop-tags
+
+.PHONY : lint
 lint:
 	@(yamllint .)
+
+.PHONY : ansible-facts
+ansible-facts:
+	@(ansible local $(ANSIBLE_EXTRA_ARGS) -m ansible.builtin.setup)

@@ -1,0 +1,31 @@
+---
+- name: Create Brew directory
+  become: true
+  ansible.builtin.file:
+    path: /opt/homebrew
+    state: directory
+    recurse: true
+    owner: croman
+    group: staff
+
+- name: Installing Brew locally
+  ansible.builtin.git:
+    repo: 'https://github.com/Homebrew/brew'
+    dest: /opt/homebrew
+    version: 3.0.4
+    update: false
+
+- name: Create extra missing directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - /opt/homebrew/Cellar
+    - /opt/homebrew/Frameworks
+    - /opt/homebrew/etc
+    - /opt/homebrew/include
+    - /opt/homebrew/lib
+    - /opt/homebrew/opt
+    - /opt/homebrew/sbin
+    - /opt/homebrew/share
+    - /opt/homebrew/var/homebrew/linked

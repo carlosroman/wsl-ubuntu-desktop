@@ -3,17 +3,36 @@
   hosts: localhost
   gather_facts: true
 
+  pre_tasks:
+    - name: Load Linux vars
+      include_vars: linux.yml
+      when: ansible_system == 'Linux'
+      tags:
+        - always
+    - name: Load OSX vars
+      include_vars: osx.yml
+      when: ansible_system == 'Darwin'
+      tags:
+        - always
+    - name: Debug
+      ansible.builtin.debug:
+        msg: "pre_task ssh.id_rsa.pub {{ ssh.id_rsa.pub }}"
+      tags:
+        - always
+
   roles:
-  - {role: dot, tags: [dot, bash]}
-  - {role: ssh, tags: [ssh]}
-  - {role: wsl, tags: [wsl]}
-  - {role: packages, tags: [packages]}
-  - {role: sudoers, tags: [sudo]}
-  - {role: docker, tags: [docker]}
-  - {role: vscode, tags: [vscode]}
-  - {role: limits, tags: [limits]}
-  - {role: chrome, tags: [chrome]}
-  - role: newrelic-infra
-    tags: [newrelic-infra]
-    vars:
-      license_key: "{{ nri_license_key }}"
+    - {role: debug, tags: [debug]}
+    - {role: dot, tags: [dot, bash]}
+    - {role: ssh, tags: [ssh]}
+    - {role: wsl, tags: [wsl]}
+    - {role: osx, tags: [osx]}
+    - {role: packages, tags: [packages]}
+    - {role: sudoers, tags: [sudo]}
+    - {role: docker, tags: [docker]}
+    - {role: vscode, tags: [vscode]}
+    - {role: limits, tags: [limits]}
+    - {role: chrome, tags: [chrome]}
+    - role: newrelic-infra
+      tags: [newrelic-infra]
+      vars:
+        license_key: "{{ nri_license_key }}"

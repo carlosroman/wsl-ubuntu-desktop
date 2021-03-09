@@ -1,0 +1,16 @@
+# Add brew to PATH
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Enable zsh-completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# Last exit status
+alias last-status="echo $?"
+
+# Load direnv
+eval "$(direnv hook zsh)"

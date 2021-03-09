@@ -16,6 +16,14 @@
     src: bash_aliases
     dest: "{{ lookup('env','HOME') }}/.bash_aliases"
     force: true
+  when: ansible_system == 'Linux'
+
+- name: copy Z shell .zshrc file
+  copy:
+    src: home/zshrc
+    dest: "{{ lookup('env','HOME') }}/.zshrc"
+    force: true
+  when: ansible_system == 'Darwin'
 
 - name: copy profile.d/10-keychain.sh
   copy:
@@ -24,3 +32,4 @@
     mode: 0644
     force: true
   become: true
+  when: ansible_system == 'Linux'

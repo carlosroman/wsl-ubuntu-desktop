@@ -1,0 +1,33 @@
+---
+- name: Install useful command tools
+  community.general.homebrew:
+    name:
+      - automake
+      - make
+      - m4
+      - ack
+      - htop
+      - jq
+      - curl
+      - wget
+      - git
+      - dos2unix
+      - tree
+      - direnv
+      - pass
+      - gnupg
+      - keychain
+      - tmux
+      - zsh-completions
+    state: present
+
+- name: Install useful apps
+  community.general.homebrew_cask:
+    name:
+      - firefox
+      - google-chrome
+      - visual-studio-code
+      - slack
+      - jetbrains-toolbox
+      - zoom
+    state: present

@@ -1,0 +1,5 @@
+---
+ssh:
+  id_rsa:
+    prvt: "{{ vault_ssh.osx_id_rsa.prvt }}"
+    pub: "{{ vault_ssh.osx_id_rsa.pub }}"
