@@ -89,6 +89,9 @@ desktop-vscode: desktop-tags
 desktop-osx: TAGS = -t 'osx'
 desktop-osx: desktop-tags
 
+desktop-golang: TAGS = -t 'golang'
+desktop-golang: desktop-tags
+
 desktop-limits: TAGS = -t 'limits'
 desktop-limits: desktop-tags
 
@@ -124,6 +127,7 @@ bob-go: desktop-tags
 red-osx: TAGS += -t 'osx'
 red-osx: TAGS += -t 'dot'
 red-osx: TAGS += -t 'ssh'
+red-osx: TAGS += -t 'golang'
 red-osx: desktop-tags
 
 .PHONY : lint

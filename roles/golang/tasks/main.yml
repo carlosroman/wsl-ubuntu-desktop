@@ -1,0 +1,19 @@
+---
+- name: Create /usr/local/go dir
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/go
+    state: directory
+    recurse: true
+    owner: croman
+    group: staff
+
+- name: Create local go dir for GOPATH
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ ansible_user_dir }}/go"
+    - "{{ ansible_user_dir }}/go/src"
+    - "{{ ansible_user_dir }}/go/bin"
+    - "{{ ansible_user_dir }}/go/pkg"

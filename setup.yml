@@ -32,6 +32,7 @@
     - {role: vscode, tags: [vscode]}
     - {role: limits, tags: [limits]}
     - {role: chrome, tags: [chrome]}
+    - {role: golang, tags: [golang]}
     - role: newrelic-infra
       tags: [newrelic-infra]
       vars:
