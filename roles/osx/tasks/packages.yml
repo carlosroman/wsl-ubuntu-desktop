@@ -20,6 +20,7 @@
       - tmux
       - zsh-completions
       - rust
+      - k9s
     state: present
 
 - name: Install useful apps
