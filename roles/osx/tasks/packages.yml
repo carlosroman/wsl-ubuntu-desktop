@@ -19,6 +19,7 @@
       - keychain
       - tmux
       - zsh-completions
+      - rust
     state: present
 
 - name: Install useful apps
