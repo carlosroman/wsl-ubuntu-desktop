@@ -19,7 +19,7 @@
       - keychain
       - tmux
       - zsh-completions
-      - rust
+      - rustup-init
       - k9s
     state: present
 
