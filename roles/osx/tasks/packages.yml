@@ -22,6 +22,7 @@
       - rustup-init
       - k9s
       - nvm
+      - graphviz
     state: present
 
 - name: Install useful apps
