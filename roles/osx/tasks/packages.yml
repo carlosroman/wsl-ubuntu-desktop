@@ -21,6 +21,7 @@
       - zsh-completions
       - rustup-init
       - k9s
+      - nvm
     state: present
 
 - name: Install useful apps
@@ -33,3 +34,11 @@
       - jetbrains-toolbox
       - zoom
     state: present
+
+- name: Create NVM directory
+  ansible.builtin.file:
+    path: "{{ lookup('env','HOME') }}/.nvm"
+    state: directory
+    recurse: true
+    owner: croman
+    group: staff
