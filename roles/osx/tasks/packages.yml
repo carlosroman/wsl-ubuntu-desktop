@@ -23,6 +23,7 @@
       - k9s
       - nvm
       - graphviz
+      - libpq
     state: present
 
 - name: Install useful apps
