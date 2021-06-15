@@ -36,6 +36,7 @@
       - jetbrains-toolbox
       - zoom
       - docker
+      - google-cloud-sdk
     state: present
 
 - name: Create NVM directory
