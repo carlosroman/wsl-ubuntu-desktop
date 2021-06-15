@@ -34,6 +34,7 @@
       - slack
       - jetbrains-toolbox
       - zoom
+      - docker
     state: present
 
 - name: Create NVM directory
