@@ -5,9 +5,14 @@ ifdef CHECK
 CHECK = --check
 endif
 
+
+PYTHON_VENV		?= venv
+PYTHON_BIN		?= $(CURDIR)/$(PYTHON_VENV)/bin/python3
+PYTHON_SOURCE	?= source $(CURDIR)/$(PYTHON_VENV)/bin/activate
+
 ANSIBLE_EXTRA_ARGS := --inventory-file HOSTS \
-		--extra-vars 'ansible_python_interpreter="/usr/bin/python3"' \
-		--vault-password-file=${HOME}/.ansible_pass
+		--extra-vars 'ansible_python_interpreter="$(CURDIR)/$(PYTHON_VENV)/bin/python"' \
+		--vault-password-file=$(HOME)/.ansible_pass
 
 ANSIBLE_PLAYBOOK := ansible-playbook \
 		setup.yml \
@@ -15,6 +20,8 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 		--ask-become-pass \
 		$(CHECK) \
 		$(ANSIBLE_EXTRA_ARGS)
+
+ANSIBLE_PLAYBOOK_CMD	:= $(PYTHON_SOURCE); $(ANSIBLE_PLAYBOOK)
 
 .PHONY: setup/apt
 setup/apt:
@@ -25,24 +32,35 @@ version:
 	@ansible --version
 
 venv:
-	@(python3 -m venv venv)
+	@(python3 -m venv $(PYTHON_VENV))
+	@(	\
+		$(PYTHON_SOURCE); \
+		pip install --upgrade \
+			pip \
+			wheel; \
+	)
 
-.PHONY: setup/
+.PHONY: setup/venv
 setup/venv: venv
 
 .PHONY: setup/python
-setup/python:
-	@pip install \
+setup/python: setup/venv
+	@(	\
+		$(PYTHON_SOURCE); \
+		pip install \
 		--upgrade \
-		wheel
-	@pip install \
-		--upgrade \
-		--ignore-installed \
-		--requirement ansible-requirements.txt
+		--requirement $(CURDIR)/ansible-requirements.txt; \
+	)
 
 .PHONY : setup/ansible
-setup/ansible:
-	@(ansible-galaxy install -r ansible-galaxy-requirements.yml)
+setup/ansible: setup/python
+	@(	\
+		$(PYTHON_SOURCE); \
+		ansible-galaxy install -r ansible-galaxy-requirements.yml; \
+	)
+
+.PHONY : setup
+setup: setup/ansible
 
 desktop-debug: TAGS = -t 'debug'
 desktop-debug: desktop-tags
@@ -102,10 +120,10 @@ desktop-newrelic-infra: TAGS = -t 'newrelic-infra'
 desktop-newrelic-infra: desktop-tags
 
 desktop-tags:
-	$(ANSIBLE_PLAYBOOK) ${TAGS}
+	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS};)
 
 desktop:
-	$(ANSIBLE_PLAYBOOK)
+	@($(ANSIBLE_PLAYBOOK_CMD);)
 
 .PHONY: bob-book
 bob-book: TAGS += -t 'wsl'
