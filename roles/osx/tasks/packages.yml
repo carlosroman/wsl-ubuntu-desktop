@@ -39,6 +39,7 @@
       - zoom
       - docker
       - google-cloud-sdk
+      - microsoft-edge
     state: present
 
 - name: Create NVM directory
