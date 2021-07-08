@@ -41,6 +41,7 @@
       - google-cloud-sdk
       - microsoft-edge
       - microsoft-teams
+      - tuple
     state: present
 
 - name: Create NVM directory
