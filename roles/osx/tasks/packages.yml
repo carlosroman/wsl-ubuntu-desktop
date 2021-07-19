@@ -42,6 +42,7 @@
       - microsoft-edge
       - microsoft-teams
       - tuple
+      - rectangle
     state: present
 
 - name: Create NVM directory
