@@ -157,7 +157,10 @@ red-osx: desktop-tags
 
 .PHONY : lint
 lint:
-	@(yamllint .)
+	@(	\
+		$(PYTHON_SOURCE); \
+		yamllint .; \
+	)
 
 .PHONY : ansible-facts
 ansible-facts:
