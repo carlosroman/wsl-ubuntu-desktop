@@ -8,7 +8,7 @@ endif
 
 PYTHON_VENV		?= venv
 PYTHON_BIN		?= $(CURDIR)/$(PYTHON_VENV)/bin/python3
-PYTHON_SOURCE	?= source $(CURDIR)/$(PYTHON_VENV)/bin/activate
+PYTHON_SOURCE	?= . $(CURDIR)/$(PYTHON_VENV)/bin/activate
 
 ANSIBLE_EXTRA_ARGS := --inventory-file HOSTS \
 		--extra-vars 'ansible_python_interpreter="$(CURDIR)/$(PYTHON_VENV)/bin/python"' \
@@ -35,9 +35,12 @@ venv:
 	@(python3 -m venv $(PYTHON_VENV))
 	@(	\
 		$(PYTHON_SOURCE); \
+		python --version; \
+		pip --version; \
 		pip install --upgrade \
 			pip \
 			wheel; \
+		pip --version; \
 	)
 
 .PHONY: setup/venv
@@ -47,6 +50,8 @@ setup/venv: venv
 setup/python: setup/venv
 	@(	\
 		$(PYTHON_SOURCE); \
+		python --version; \
+		pip --version; \
 		pip install \
 		--upgrade \
 		--requirement $(CURDIR)/ansible-requirements.txt; \
@@ -56,6 +61,8 @@ setup/python: setup/venv
 setup/ansible: setup/python
 	@(	\
 		$(PYTHON_SOURCE); \
+		python --version; \
+		pip --version; \
 		ansible-galaxy install -r ansible-galaxy-requirements.yml; \
 	)
 
