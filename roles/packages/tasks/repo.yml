@@ -1,0 +1,8 @@
+---
+- name: Add Git Ubuntu repo
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+    filename: git-core
+  when: ansible_distribution == 'Ubuntu'

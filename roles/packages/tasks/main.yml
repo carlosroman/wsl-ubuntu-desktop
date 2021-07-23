@@ -1,5 +1,6 @@
 ---
 - include: setup.yml
+- include: repo.yml
 - include: install_packages.yml
 - include: install_pip.yml
 - include: install_adr.yml
