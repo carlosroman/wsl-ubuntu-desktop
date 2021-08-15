@@ -1,9 +1,21 @@
 ---
 - name: a playbook to setup my local machine with my basic customizations
   hosts: localhost
-  gather_facts: true
+  gather_facts: false
 
   pre_tasks:
+    - name: Collect system facts
+      ansible.builtin.setup:
+        gather_subset:
+          - '!all'
+          - '!min'
+          - os_family  # distribution
+          - user
+          - env
+          - system  # architecture
+          - date_time        
+      tags:
+        - always
     - name: Load Linux vars
       include_vars: linux.yml
       when: ansible_system == 'Linux'
