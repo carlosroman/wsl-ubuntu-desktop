@@ -13,16 +13,16 @@
           - user
           - env
           - system  # architecture
-          - date_time        
+          - date_time
       tags:
         - always
     - name: Load Linux vars
-      include_vars: linux.yml
+      ansible.builtin.include_vars: linux.yml
       when: ansible_system == 'Linux'
       tags:
         - always
     - name: Load OSX vars
-      include_vars: osx.yml
+      ansible.builtin.include_vars: osx.yml
       when: ansible_system == 'Darwin'
       tags:
         - always
