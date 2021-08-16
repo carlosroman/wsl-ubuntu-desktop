@@ -117,6 +117,9 @@ desktop-osx: desktop-tags
 desktop-golang: TAGS = -t 'golang'
 desktop-golang: desktop-tags
 
+desktop-rust: TAGS = -t 'rust'
+desktop-rust: desktop-tags
+
 desktop-limits: TAGS = -t 'limits'
 desktop-limits: desktop-tags
 

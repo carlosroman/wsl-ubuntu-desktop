@@ -1,0 +1,28 @@
+---
+- name: Create temporary file for rustup-init
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: rustup-init
+  register: rustup_tmp_dir
+
+- name: Download rustup-init
+  ansible.builtin.get_url:
+    url:
+      https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
+    dest: "{{ rustup_tmp_dir.path }}"
+    mode: a+x
+
+- name: Run rustup-int
+  ansible.builtin.command:
+    argv:
+      - "{{ rustup_tmp_dir.path }}/rustup-init"
+      - --verbose
+      - --no-modify-path
+      - -y
+    creates: "{{ ansible_user_dir }}/.cargo/bin/rustup"
+
+- name: Remove temporary file for rustup-init
+  ansible.builtin.file:
+    path: "{{ rustup_tmp_dir.path }}"
+    state: absent
+  when: rustup_tmp_dir.path is defined

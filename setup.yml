@@ -45,6 +45,7 @@
     - {role: limits, tags: [limits]}
     - {role: chrome, tags: [chrome]}
     - {role: golang, tags: [golang]}
+    - {role: rust, tags: [rust]}
     - role: newrelic-infra
       tags: [newrelic-infra]
       vars:
