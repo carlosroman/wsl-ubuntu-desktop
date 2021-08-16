@@ -21,3 +21,6 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="auto"
 export GIT_PS1_HIDE_IF_PWD_IGNORED=true
 export GIT_PS1_SHOWCOLORHINTS=true
+
+# Load direnv
+eval "$(direnv hook bash)"
