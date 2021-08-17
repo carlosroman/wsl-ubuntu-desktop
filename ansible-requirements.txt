@@ -6,7 +6,6 @@ Jinja2==3.0.1
 MarkupSafe==2.0.1
 packaging==20.9
 pathspec==0.8.1
-pkg_resources==0.0.0
 pycparser==2.20
 pyparsing==2.4.7
 PyYAML==5.4.1
