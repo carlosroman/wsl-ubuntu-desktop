@@ -23,11 +23,11 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 
 ANSIBLE_PLAYBOOK_CMD	:= $(PYTHON_SOURCE); $(ANSIBLE_PLAYBOOK)
 
-.PHONY: setup/apt
+.PHONY : setup/apt
 setup/apt:
 	apt-get install -y python3-apt python3-venv
 
-.PHONY: version
+.PHONY : version
 version:
 	@ansible --version
 
@@ -43,10 +43,10 @@ venv:
 		pip --version; \
 	)
 
-.PHONY: setup/venv
+.PHONY : setup/venv
 setup/venv: venv
 
-.PHONY: setup/python
+.PHONY : setup/python
 setup/python: setup/venv
 	@(	\
 		$(PYTHON_SOURCE); \
@@ -132,10 +132,14 @@ desktop-newrelic-infra: desktop-tags
 desktop-tags:
 	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS};)
 
+.PHONY : debug
+debug:
+	@(echo "$(ANSIBLE_PLAYBOOK_CMD) ${TAGS}";)
+
 desktop:
 	@($(ANSIBLE_PLAYBOOK_CMD);)
 
-.PHONY: bob-book
+.PHONY : bob-book
 bob-book: TAGS += -t 'wsl'
 bob-book: TAGS += -t 'packages'
 bob-book: TAGS += -t 'sudo'
@@ -143,7 +147,7 @@ bob-book: TAGS += -t 'ssh'
 bob-book: TAGS += -t 'dot'
 bob-book: desktop-tags
 
-.PHONY: bob-go
+.PHONY : bob-go
 bob-go: TAGS += -t 'wsl'
 bob-go: TAGS += -t 'packages'
 bob-go: TAGS += -t 'sudo'
@@ -151,7 +155,7 @@ bob-go: TAGS += -t 'ssh'
 bob-go: TAGS += -t 'dot'
 bob-go: desktop-tags
 
-.PHONY: red-osx
+.PHONY : red-osx
 red-osx: TAGS += -t 'osx'
 red-osx: TAGS += -t 'dot'
 red-osx: TAGS += -t 'ssh'
