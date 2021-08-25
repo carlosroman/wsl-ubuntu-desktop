@@ -12,8 +12,9 @@
   ansible.builtin.git:
     repo: 'https://github.com/Homebrew/brew'
     dest: /opt/homebrew
-    version: 3.0.4
-    update: false
+    version: 3.2.9
+    force: true
+    single_branch: yes
 
 - name: Create extra missing directories
   ansible.builtin.file:
