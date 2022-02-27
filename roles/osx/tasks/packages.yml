@@ -23,7 +23,6 @@
       - k9s
       - nvm
       - graphviz
-      - libpq
       - rbenv
       - telnet
     state: present
@@ -37,12 +36,6 @@
       - slack
       - jetbrains-toolbox
       - zoom
-      - docker
-      - google-cloud-sdk
-      - microsoft-edge
-      - microsoft-teams
-      - tuple
-      - rectangle
     state: present
 
 - name: Create NVM directory

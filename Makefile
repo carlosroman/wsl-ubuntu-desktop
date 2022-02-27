@@ -155,12 +155,12 @@ bob-go: TAGS += -t 'ssh'
 bob-go: TAGS += -t 'dot'
 bob-go: desktop-tags
 
-.PHONY : red-osx
-red-osx: TAGS += -t 'osx'
-red-osx: TAGS += -t 'dot'
-red-osx: TAGS += -t 'ssh'
-red-osx: TAGS += -t 'golang'
-red-osx: desktop-tags
+.PHONY : dd-osx
+dd-osx: TAGS += -t 'osx'
+dd-osx: TAGS += -t 'dot'
+dd-osx: TAGS += -t 'ssh'
+dd-osx: TAGS += -t 'golang'
+dd-osx: desktop-tags
 
 .PHONY : lint
 lint:
