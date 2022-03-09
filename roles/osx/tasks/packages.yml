@@ -4,28 +4,40 @@
     name:
       - ack
       - automake
+      - bash
       - cmake
+      - coreutils
       - curl
       - direnv
       - dos2unix
       - git
       - gnupg
+      - gpg2
       - graphviz
       - htop
       - jq
-      - k9s
       - keychain
       - m4
       - make
       - nvm
       - pass
+      - pinentry
       - rbenv
-      - rustup-init
       - telnet
       - tmux
       - tree
       - wget
       - zsh-completions
+    state: upgraded
+
+- name: Install k8s tools
+  community.general.homebrew:
+    name:
+      - helm
+      - k9s
+      - kubectx
+      - kubernetes-cli
+      - vault
     state: upgraded
 
 - name: Install useful apps
