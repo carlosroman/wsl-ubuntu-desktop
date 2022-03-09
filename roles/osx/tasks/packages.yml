@@ -4,6 +4,7 @@
     name:
       - automake
       - make
+      - cmake
       - m4
       - ack
       - htop
@@ -25,17 +26,16 @@
       - graphviz
       - rbenv
       - telnet
-    state: present
+    state: upgraded
 
 - name: Install useful apps
   community.general.homebrew_cask:
     name:
       - firefox
-      - google-chrome
+      - iterm2
+      # - google-chrome
       - visual-studio-code
-      - slack
       - jetbrains-toolbox
-      - zoom
     state: present
 
 - name: Create NVM directory
@@ -43,5 +43,5 @@
     path: "{{ lookup('env','HOME') }}/.nvm"
     state: directory
     recurse: true
-    owner: croman
+    owner: "{{ ansible_user_id }}"
     group: staff
