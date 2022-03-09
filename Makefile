@@ -10,7 +10,7 @@ PYTHON_VENV		?= venv
 PYTHON_BIN		?= $(CURDIR)/$(PYTHON_VENV)/bin/python3
 PYTHON_SOURCE	?= . $(CURDIR)/$(PYTHON_VENV)/bin/activate
 
-ANSIBLE_EXTRA_ARGS := --inventory-file HOSTS \
+ANSIBLE_EXTRA_ARGS := \
 		--extra-vars 'ansible_python_interpreter="$(CURDIR)/$(PYTHON_VENV)/bin/python"' \
 		--vault-password-file=$(HOME)/.ansible_pass
 
