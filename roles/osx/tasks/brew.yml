@@ -5,14 +5,14 @@
     path: /opt/homebrew
     state: directory
     recurse: true
-    owner: croman
+    owner: "{{ ansible_user_id }}"
     group: staff
 
 - name: Installing Brew locally
   ansible.builtin.git:
     repo: 'https://github.com/Homebrew/brew'
     dest: /opt/homebrew
-    version: 3.2.9
+    version: 3.4.1
     force: true
     single_branch: yes
 
