@@ -1,0 +1,13 @@
+---
+- name: Check if Docker.app is installed
+  stat:
+    path: "/Applications/Docker.app"
+  register:
+    docker_app_already_installed
+
+- name: Install Docker
+  community.general.homebrew_cask:
+    name:
+      - docker
+    state: present
+  when: not docker_app_already_installed.stat.exists

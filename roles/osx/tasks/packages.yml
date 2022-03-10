@@ -51,6 +51,8 @@
       - visual-studio-code
     state: present
 
+- include_tasks: docker.yml
+
 - name: Create NVM directory
   ansible.builtin.file:
     path: "{{ lookup('env','HOME') }}/.nvm"

@@ -14,7 +14,7 @@
     dest: /opt/homebrew
     version: 3.4.1
     force: true
-    single_branch: yes
+    single_branch: true
 
 - name: Create extra missing directories
   ansible.builtin.file:
