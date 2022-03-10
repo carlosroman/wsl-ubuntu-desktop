@@ -1,6 +1,6 @@
 ---
 - name: Check if Docker.app is installed
-  stat:
+  ansible.builtin.stat:
     path: "/Applications/Docker.app"
   register:
     docker_app_already_installed

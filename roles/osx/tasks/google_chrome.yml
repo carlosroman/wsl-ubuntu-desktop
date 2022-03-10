@@ -1,6 +1,6 @@
 ---
 - name: Check if 'Google Chrome.app' is installed
-  stat:
+  ansible.builtin.stat:
     path: "/Applications/Google Chrome.app"
   register:
     google_chrome_app_already_installed
