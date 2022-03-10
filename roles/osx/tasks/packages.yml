@@ -51,7 +51,11 @@
       - visual-studio-code
     state: present
 
-- include_tasks: docker.yml
+- name: Run Docker install task
+  ansible.builtin.include_tasks: docker.yml
+
+- name: Run Google Chrome install task
+  ansible.builtin.include_tasks: google_chrome.yml
 
 - name: Create NVM directory
   ansible.builtin.file:

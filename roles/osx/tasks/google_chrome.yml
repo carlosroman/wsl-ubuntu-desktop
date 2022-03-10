@@ -1,0 +1,13 @@
+---
+- name: Check if 'Google Chrome.app' is installed
+  stat:
+    path: "/Applications/Google Chrome.app"
+  register:
+    google_chrome_app_already_installed
+
+- name: Install Google Chrome
+  community.general.homebrew_cask:
+    name:
+      - google-chrome
+    state: present
+  when: not google_chrome_app_already_installed.stat.exists
