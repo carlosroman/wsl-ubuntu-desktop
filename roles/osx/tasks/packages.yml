@@ -10,6 +10,7 @@
       - curl
       - direnv
       - dos2unix
+      - gcc
       - git
       - gnupg
       - gpg2
@@ -22,6 +23,7 @@
       - nvm
       - pass
       - pinentry
+      - pyenv
       - rbenv
       - telnet
       - tmux
