@@ -1,3 +1,12 @@
 ---
-- include: brew.yml
-- include: packages.yml
+- name: Run Brew install tasks
+  ansible.builtin.include_tasks: brew.yml
+
+- name: Install default packages
+  ansible.builtin.include_tasks: packages.yml
+
+- name: Run Docker install task
+  ansible.builtin.include_tasks: docker.yml
+
+- name: Run Google Chrome install task
+  ansible.builtin.include_tasks: google_chrome.yml
