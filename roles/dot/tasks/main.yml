@@ -1,32 +1,38 @@
 ---
-- name: copy gitconfig
-  copy:
+- name: Copy gitconfig
+  ansible.builtin.copy:
     src: gitconfig
     dest: "{{ lookup('env','HOME') }}/.gitconfig"
     force: true
 
-- name: copy tmux.conf
-  copy:
+- name: Copy tmux.conf
+  ansible.builtin.copy:
     src: tmux.conf
     dest: "{{ lookup('env','HOME') }}/.tmux.conf"
     force: true
 
-- name: copy bash_aliases
-  copy:
+- name: Copy bash_aliases
+  ansible.builtin.copy:
     src: bash_aliases
     dest: "{{ lookup('env','HOME') }}/.bash_aliases"
     force: true
   when: ansible_system == 'Linux'
 
-- name: copy Z shell .zshrc file
-  copy:
+- name: Copy Z shell .zshrc file
+  ansible.builtin.copy:
     src: home/zshrc
     dest: "{{ lookup('env','HOME') }}/.zshrc"
     force: true
   when: ansible_system == 'Darwin'
 
-- name: copy profile.d/10-keychain.sh
-  copy:
+- name: Copy .ssh/ssh_config file
+  ansible.builtin.copy:
+    src: home/.ssh/ssh_config
+    dest: "{{ lookup('env','HOME') }}/.ssh/ssh_config"
+    force: true
+
+- name: Copy profile.d/10-keychain.sh
+  ansible.builtin.copy:
     src: etc/profile.d/10-keychain.sh
     dest: /etc/profile.d/10-keychain.sh
     mode: 0644
