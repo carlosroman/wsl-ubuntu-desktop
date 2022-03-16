@@ -30,6 +30,7 @@
       - tree
       - wget
       - zsh-completions
+      - ykman
     state: upgraded
 
 - name: Install k8s tools
