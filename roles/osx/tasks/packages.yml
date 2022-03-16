@@ -10,6 +10,7 @@
       - curl
       - direnv
       - dos2unix
+      - expect
       - gcc
       - git
       - gnupg
