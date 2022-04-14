@@ -51,6 +51,7 @@
       - firefox
       - iterm2
       - jetbrains-toolbox
+      - multipass
       - visual-studio-code
     state: present
 
