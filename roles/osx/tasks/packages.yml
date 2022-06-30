@@ -27,6 +27,7 @@
       - pinentry-mac
       - pyenv
       - rbenv
+      - skopeo
       - telnet
       - tmux
       - tree
