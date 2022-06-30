@@ -52,6 +52,7 @@
       - iterm2
       - jetbrains-toolbox
       - multipass
+      - obsidian
       - visual-studio-code
     state: present
 
