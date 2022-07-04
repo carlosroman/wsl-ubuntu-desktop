@@ -17,6 +17,7 @@
       - gpg2
       - graphviz
       - htop
+      - iperf3
       - jq
       - keychain
       - m4

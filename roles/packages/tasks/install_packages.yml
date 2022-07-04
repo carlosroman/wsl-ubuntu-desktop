@@ -37,6 +37,7 @@
       - ca-certificates
       - tmux
       - sshfs
+      - iperf3
     state: latest
   become: true
 
