@@ -147,6 +147,14 @@ bob-book: TAGS += -t 'ssh'
 bob-book: TAGS += -t 'dot'
 bob-book: desktop-tags
 
+.PHONY : bob-can
+bob-can: TAGS += -t 'wsl'
+bob-can: TAGS += -t 'packages'
+bob-can: TAGS += -t 'sudo'
+bob-can: TAGS += -t 'ssh'
+bob-can: TAGS += -t 'dot'
+bob-can: desktop-tags
+
 .PHONY : bob-go
 bob-go: TAGS += -t 'wsl'
 bob-go: TAGS += -t 'packages'
@@ -171,4 +179,7 @@ lint:
 
 .PHONY : ansible-facts
 ansible-facts:
-	@(ansible local $(ANSIBLE_EXTRA_ARGS) -m ansible.builtin.setup)
+	@(	\
+		$(PYTHON_SOURCE); \
+		ansible all $(ANSIBLE_EXTRA_ARGS) -m ansible.builtin.setup -a 'gather_subset=!all,!min,os_family,distribution,user,env,system,date_time,platform,lsb'; \
+	)
