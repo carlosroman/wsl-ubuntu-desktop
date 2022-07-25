@@ -4,10 +4,15 @@
     name:
       - ack-grep
       - automake
+      - bind9-dnsutils
       - ca-certificates
+      - cmake
       - curl
       - direnv
       - dos2unix
+      - dpkg-dev
+      - g++
+      - gcc
       - git
       - gnupg2
       - htop
@@ -19,12 +24,14 @@
       - libevent-dev
       - libncurses-dev
       - libreadline-dev
+      - libpq-dev
       - libsqlite3-dev
       - libssl-dev
       - libtool
       - m4
       - make
       - mingw-w64
+      - pkg-config
       - p7zip-full
       - p7zip-rar
       - pass

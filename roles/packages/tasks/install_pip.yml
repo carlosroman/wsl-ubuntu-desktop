@@ -1,6 +1,6 @@
 ---
 - name: Install global Python packages
-  pip:
+  ansible.builtin.pip:
     name:
       - httpie
       - wheel
