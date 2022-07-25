@@ -1,19 +1,25 @@
 ---
 - name: Copy gitconfig
   ansible.builtin.copy:
-    src: gitconfig
+    src: home/gitconfig
     dest: "{{ lookup('env','HOME') }}/.gitconfig"
+    force: true
+
+- name: Copy gitignore
+  ansible.builtin.copy:
+    src: home/gitignore
+    dest: "{{ lookup('env','HOME') }}/.gitignore"
     force: true
 
 - name: Copy tmux.conf
   ansible.builtin.copy:
-    src: tmux.conf
+    src: home/tmux.conf
     dest: "{{ lookup('env','HOME') }}/.tmux.conf"
     force: true
 
 - name: Copy bash_aliases
   ansible.builtin.copy:
-    src: bash_aliases
+    src: home/bash_aliases
     dest: "{{ lookup('env','HOME') }}/.bash_aliases"
     force: true
   when: ansible_system == 'Linux'
@@ -39,3 +45,10 @@
     force: true
   become: true
   when: ansible_system == 'Linux'
+
+- name: Installing Tmux Plugin Manager
+  ansible.builtin.git:
+    repo: 'https://github.com/tmux-plugins/tpm.git'
+    dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
+    force: true
+    single_branch: true
