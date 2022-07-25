@@ -9,11 +9,13 @@
         gather_subset:
           - '!all'
           - '!min'
-          - os_family  # distribution
-          - user
-          - env
-          - system  # architecture
           - date_time
+          - distribution
+          - env
+          - lsb # Linux Standard Base (LSB)
+          - os_family  # Distribution
+          - system  # Architecture
+          - user
       tags:
         - always
     - name: Load Linux vars

@@ -1,14 +1,14 @@
 ---
 - name: Add Ubuntu APT key
   become: true
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
   when: ansible_distribution == 'Ubuntu'
 
 - name: Add Ubuntu repo
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: 'deb [arch=amd64]
       https://download.docker.com/linux/ubuntu
       {{ ansible_lsb.codename }}

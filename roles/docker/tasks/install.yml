@@ -4,17 +4,14 @@
   become: true
   package:
     name:
+      - binfmt-support
       - docker-ce
       - docker-ce-cli
+      - docker-compose-plugin
       - containerd.io
+      - qemu-user-static
+      - skopeo
     state: latest
-
-- name: Start Docker
-  become: true
-  service:
-    name: docker
-    enabled: true
-    state: reloaded
 
 - name: Add user to Docker
   become: true
@@ -23,3 +20,10 @@
     append: true
     groups:
       - docker
+
+- name: Start Docker
+  become: true
+  service:
+    name: docker
+    enabled: true
+    state: reloaded
