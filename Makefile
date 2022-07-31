@@ -129,6 +129,9 @@ desktop-chrome: desktop-tags
 desktop-newrelic-infra: TAGS = -t 'newrelic-infra'
 desktop-newrelic-infra: desktop-tags
 
+desktop-nvidia-cuda: TAGS = -t 'nvidia-cuda'
+desktop-nvidia-cuda: desktop-tags
+
 desktop-tags:
 	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS};)
 

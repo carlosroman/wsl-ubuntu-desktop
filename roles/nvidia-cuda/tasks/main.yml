@@ -1,0 +1,10 @@
+---
+- name: Run NVIDIA CUDA add repo tasks
+  ansible.builtin.include_tasks: repo.yml
+
+- name: Install CUDA
+  become: true
+  ansible.builtin.apt:
+    name: cuda
+    update_cache: true
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'

@@ -1,0 +1,54 @@
+---
+# - name: Add APT key - jammy
+#   become: true
+#   ansible.builtin.apt_key:
+#     url: >
+#       https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/3bf863cc.pub
+#     state: present
+#   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'jammy'
+
+# - name: Add APT key - bionic
+#   become: true
+#   ansible.builtin.apt_key:
+#     url: >
+#       https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
+#     state: present
+#   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
+
+# - name: Add APT repo - jammy
+#   become: true
+#   ansible.builtin.apt_repository:
+#     repo: 'deb
+#       https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
+#       /'
+#     state: present
+#     filename: cuda-repository
+#   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'jammy'
+
+# - name: Add APT repo - bionic
+#   become: true
+#   ansible.builtin.apt_repository:
+#     repo: 'deb
+#       https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/
+#       /'
+#     state: present
+#     filename: cuda-repository
+#   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
+
+- name: Add APT key - WSL
+  become: true
+  ansible.builtin.apt_key:
+    url: >
+      https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/3bf863cc.pub
+    state: present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'jammy'
+
+- name: Add APT repo - WSL
+  become: true
+  ansible.builtin.apt_repository:
+    repo: 'deb
+      https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/
+      /'
+    state: present
+    filename: cuda-repository
+  when: ansible_distribution == 'Ubuntu'
