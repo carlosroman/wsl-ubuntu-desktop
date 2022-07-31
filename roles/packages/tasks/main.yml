@@ -1,7 +1,18 @@
 ---
-- include: setup.yml
-- include: repo.yml
-- include: install_packages.yml
-- include: install_pip.yml
-- include: install_adr.yml
-- include: clean_up.yml
+- name: Run Packages setup tasks
+  ansible.builtin.include_tasks: setup.yml
+
+- name: Run Packages repo add tasks
+  ansible.builtin.include_tasks: repo.yml
+
+- name: Run Packages install native packages tasks
+  ansible.builtin.include_tasks: install_packages.yml
+
+- name: Run Packages install pip packages
+  ansible.builtin.include_tasks: install_pip.yml
+
+- name: Run Packages ADR install tasks
+  ansible.builtin.include_tasks: install_adr.yml
+
+- name: Run Pacakges clean up tasks
+  ansible.builtin.include_tasks: clean_up.yml

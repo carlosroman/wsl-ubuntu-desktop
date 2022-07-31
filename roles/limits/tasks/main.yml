@@ -1,3 +1,6 @@
 ---
-- include: sysctl.yml
-- include: pam.yml
+- name: Update sysctl variables
+  ansible.builtin.include_tasks: sysctl.yml
+
+- name: Update PAM limits
+  ansible.builtin.include_tasks: pam.yml
