@@ -7,4 +7,21 @@
   ansible.builtin.apt:
     name: cuda
     update_cache: true
+    state: latest
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Install CUDA dependecies
+  become: true
+  ansible.builtin.apt:
+    name:
+      - freeglut3-dev
+      - libopenexr-dev
+      - libxi-dev
+      - libglfw3-dev
+      - libglew-dev
+      - libomp-dev
+      - libxinerama-dev
+      - libxcursor-dev
+      - libxrender-dev
+    state: latest
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
