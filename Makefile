@@ -99,6 +99,9 @@ desktop-apt: desktop-tags
 desktop-packages: TAGS = -t 'packages'
 desktop-packages: desktop-tags
 
+desktop-gui: TAGS = -t 'gui'
+desktop-gui: desktop-tags
+
 desktop-docker: TAGS = -t 'docker'
 desktop-docker: desktop-tags
 

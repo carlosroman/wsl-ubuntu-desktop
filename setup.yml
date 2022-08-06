@@ -41,6 +41,7 @@
     - {role: wsl, tags: [wsl]}
     - {role: osx, tags: [osx]}
     - {role: packages, tags: [packages]}
+    - {role: gui, tags: [gui]}
     - {role: sudoers, tags: [sudo]}
     - {role: docker, tags: [docker]}
     - {role: vscode, tags: [vscode]}

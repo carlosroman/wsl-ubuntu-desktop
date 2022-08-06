@@ -1,0 +1,27 @@
+---
+- name: Only run "update_cache=yes" when last one is more than 3600 seconds ago
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Install WSLg dependecies
+  become: true
+  ansible.builtin.apt:
+    name:
+      - libatk-bridge2.0-0
+      - libatk1.0-0
+      - libatspi2.0-0
+      - libcairo-5c-dev
+      - libcups2
+      - libgbm-dev
+      - libpango-1.0-0
+      - libxdamage-dev
+      - libxkbcommon-dev
+      - mesa-utils
+      - x11-apps
+      - xbitmaps
+    state: latest
+    install_recommends: false
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
