@@ -23,10 +23,6 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 
 ANSIBLE_PLAYBOOK_CMD	:= $(PYTHON_SOURCE); $(ANSIBLE_PLAYBOOK)
 
-.PHONY : setup/apt
-setup/apt:
-	apt-get install -y python3-apt python3-venv
-
 .PHONY : version
 version:
 	@ansible --version
