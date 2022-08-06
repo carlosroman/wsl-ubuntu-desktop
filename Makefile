@@ -156,6 +156,7 @@ bob-book: desktop-tags
 .PHONY : bob-can
 bob-can: TAGS += -t 'wsl'
 bob-can: TAGS += -t 'packages'
+bob-can: TAGS += -t 'gui'
 bob-can: TAGS += -t 'sudo'
 bob-can: TAGS += -t 'ssh'
 bob-can: TAGS += -t 'dot'
