@@ -1,6 +1,13 @@
 ---
+- name: Only run "update_cache=yes" when last one is more than 3600 seconds ago
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
 - name: Install generic packages
-  package:
+  ansible.builtin.package:
     name:
       - ack-grep
       - automake
@@ -23,18 +30,18 @@
       - libbz2-dev
       - libevent-dev
       - libncurses-dev
-      - libreadline-dev
       - libpq-dev
+      - libreadline-dev
       - libsqlite3-dev
       - libssl-dev
       - libtool
       - m4
       - make
       - mingw-w64
-      - pkg-config
       - p7zip-full
       - p7zip-rar
       - pass
+      - pkg-config
       - sshfs
       - sshpass
       - sudo
@@ -49,12 +56,14 @@
   become: true
 
 - name: Install ubuntu packages
-  package:
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - build-essential
       - pkg-config
       - rpm
       - software-properties-common
+    state: latest
+    install_recommends: false
   become: true
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

@@ -1,15 +1,15 @@
 ---
-- name: Add APT key
+- name: Add Newrelic APT key
   become: true
-  apt_key:
+  ansible.builtin.apt_key:
     url: >
       https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
-- name: Add APT repo
+- name: Add Newrelic APT repo
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: 'deb [arch=amd64]
       https://download.newrelic.com/infrastructure_agent/linux/apt
       {{ ansible_lsb.codename }}

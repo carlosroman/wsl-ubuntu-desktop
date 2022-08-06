@@ -1,6 +1,6 @@
 ---
 - name: Install Chrome
   become: true
-  package:
+  ansible.builtin.package:
     name: google-chrome-stable
     state: latest

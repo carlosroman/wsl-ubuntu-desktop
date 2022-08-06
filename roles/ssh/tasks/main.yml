@@ -2,13 +2,13 @@
 # Sets up the prviate and public ssh keys
 
 - name: Create .ssh dir
-  file:
+  ansible.builtin.file:
     path: "{{ lookup('env','HOME') }}/.ssh"
     state: directory
     mode: 0700
 
 - name: Copy id_rsa file
-  copy:
+  ansible.builtin.copy:
     content: "{{ ssh.id_rsa.prvt }}"
     dest: "{{ lookup('env','HOME') }}/.ssh/id_rsa"
     mode: 0600

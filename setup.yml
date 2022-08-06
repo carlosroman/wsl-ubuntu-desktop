@@ -18,17 +18,20 @@
           - user
       tags:
         - always
+
     - name: Load Linux vars
       ansible.builtin.include_vars: linux.yml
       when: ansible_system == 'Linux'
       tags:
         - always
+
     - name: Load OSX vars
       ansible.builtin.include_vars: osx.yml
       when: ansible_system == 'Darwin'
       tags:
         - always
-    - name: Debug
+
+    - name: Debug ssh id_rsa
       ansible.builtin.debug:
         msg: "pre_task ssh.id_rsa.pub {{ ssh.id_rsa.pub }}"
       tags:

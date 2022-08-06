@@ -1,5 +1,5 @@
 ---
 - name: Create Home bin
-  file:
+  ansible.builtin.file:
     path: "{{ lookup('env','HOME') }}/bin"
     state: directory

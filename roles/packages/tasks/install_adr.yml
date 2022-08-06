@@ -1,16 +1,16 @@
 ---
 - name: stat ADR
-  stat:
+  ansible.builtin.stat:
     path: "{{ lookup('env','HOME') }}/bin/adr-tools"
   register: adr_stat
 
 - name: Get ADR Tools
-  unarchive:
+  ansible.builtin.unarchive:
     src: https://github.com/npryce/adr-tools/archive/3.0.0.zip
     dest: /tmp
     remote_src: true
   when: adr_stat.stat.exists == False
 
 - name: Copy ADR Tools
-  command: "mv  /tmp/adr-tools-3.0.0  {{ lookup('env','HOME') }}/bin/adr-tools"
+  ansible.builtin.command: "mv  /tmp/adr-tools-3.0.0  {{ lookup('env','HOME') }}/bin/adr-tools"
   when: adr_stat.stat.exists == False

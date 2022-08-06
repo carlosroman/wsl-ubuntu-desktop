@@ -2,7 +2,7 @@
 # docker-ce docker-ce-cli containerd.io
 - name: Install Docker
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - binfmt-support
       - docker-ce
@@ -13,9 +13,9 @@
       - skopeo
     state: latest
 
-- name: Add user to Docker
+- name: Add user to Docker group
   become: true
-  user:
+  ansible.builtin.user:
     name: '{{ current_username }}'
     append: true
     groups:
@@ -23,7 +23,7 @@
 
 - name: Start Docker
   become: true
-  service:
+  ansible.builtin.service:
     name: docker
     enabled: true
     state: reloaded

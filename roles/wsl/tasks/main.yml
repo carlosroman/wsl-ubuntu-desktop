@@ -1,6 +1,6 @@
 ---
-- name: create /etc/wsl.conf
-  template:
+- name: Create /etc/wsl.conf
+  ansible.builtin.template:
     src: etc/wsl.conf.j2
     dest: /etc/wsl.conf
   become: true
