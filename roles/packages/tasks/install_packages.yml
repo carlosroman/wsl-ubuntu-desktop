@@ -67,3 +67,14 @@
     install_recommends: false
   become: true
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install additonal pico toolchain packages
+  ansible.builtin.apt:
+    name:
+      - gcc-arm-none-eabi
+      - libnewlib-arm-none-eabi
+      - libstdc++-arm-none-eabi-newlib
+    state: latest
+    install_recommends: false
+  become: true
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
