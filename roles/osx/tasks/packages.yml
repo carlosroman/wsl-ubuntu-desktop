@@ -8,6 +8,7 @@
       - cmake
       - coreutils
       - curl
+      - diffutils
       - direnv
       - dos2unix
       - expect
