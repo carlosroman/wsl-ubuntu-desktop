@@ -6,4 +6,6 @@
       - wheel
       - yamllint
     virtualenv: "{{ lookup('env','HOME') }}/venv"
+    # Fix for creating the virtual env
+    virtualenv_command: /usr/bin/python3 -m venv 
     state: latest
