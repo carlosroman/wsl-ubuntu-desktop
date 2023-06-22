@@ -39,8 +39,8 @@
 
   roles:
     - {role: debug, tags: [debug]}
-    - {role: dot, tags: [dot, bash]}
     - {role: ssh, tags: [ssh]}
+    - {role: dot, tags: [dot, bash]}
     - {role: wsl, tags: [wsl]}
     - {role: osx, tags: [osx]}
     - {role: packages, tags: [packages]}
