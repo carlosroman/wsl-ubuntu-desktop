@@ -1,7 +1,22 @@
 # https://blogs.msdn.microsoft.com/commandline/2018/01/12/chmod-chown-wsl-improvements/
-# Enable extra metadata options by default
-[automount]
-enabled = true
-root = /
-options = "metadata,umask=22,fmask=11"
+# https://learn.microsoft.com/en-us/windows/wsl/wsl-config
 
+[boot]
+
+# Enable systemd at boot
+systemd=true
+
+[automount]
+
+# Set to true will automount fixed drives (C:/ or D:/) with DrvFs under the root directory set above. Set to false means drives won't be mounted automatically, but need to be mounted manually or with fstab.
+enabled = true
+
+# Sets the directory where fixed drives will be automatically mounted. This example changes the mount location, so your C-drive would be /c, rather than the default /mnt/c. 
+root = /
+
+# DrvFs-specific options can be specified.  
+# uid/gid 1000 is default user created
+options = "metadata,uid=1000,gid=1000,umask=022,fmask=11"
+
+# Sets the `/etc/fstab` file to be processed when a WSL distribution is launched.
+mountFsTab = true
