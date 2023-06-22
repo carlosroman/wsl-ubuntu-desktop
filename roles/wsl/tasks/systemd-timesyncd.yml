@@ -1,0 +1,25 @@
+---
+- name: Create /etc/systemd/system/systemd-timesyncd.service.d dir
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/systemd-timesyncd.service.d
+    state: directory
+    mode: 0755
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Add systemd-timesyncd overide
+  become: true
+  ansible.builtin.copy:
+    src: etc/systemd/system/systemd-timesyncd.service.d/override.conf
+    dest: /etc/systemd/system/systemd-timesyncd.service.d/override.conf
+    mode: 0644
+    force: true
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Bounce systemd-timesyncd
+  become: true
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: true
+    name: systemd-timesyncd.service
+  when: ansible_distribution == 'Ubuntu'
