@@ -164,6 +164,7 @@ bob-go: TAGS += -t 'packages'
 bob-go: TAGS += -t 'sudo'
 bob-go: TAGS += -t 'ssh'
 bob-go: TAGS += -t 'dot'
+bob-go: TAGS += -t 'docker'
 bob-go: desktop-tags
 
 .PHONY : dd-osx
