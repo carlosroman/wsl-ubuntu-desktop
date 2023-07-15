@@ -156,6 +156,7 @@ bob-can: TAGS += -t 'gui'
 bob-can: TAGS += -t 'sudo'
 bob-can: TAGS += -t 'ssh'
 bob-can: TAGS += -t 'dot'
+bob-can: TAGS += -t 'docker'
 bob-can: desktop-tags
 
 .PHONY : bob-go
