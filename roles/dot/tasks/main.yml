@@ -52,3 +52,10 @@
     dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
     force: true
     single_branch: true
+
+- name: Add hushlogin file to home dir
+  ansible.builtin.file:
+    path: "{{ lookup('env','HOME') }}/.hushlogin"
+    state: touch
+    mode: 0644
+  when: ansible_system == 'Linux'
