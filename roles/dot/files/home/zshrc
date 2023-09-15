@@ -1,5 +1,6 @@
 # Add brew to PATH
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 
 # Enable zsh-completions
 if type brew &>/dev/null; then
