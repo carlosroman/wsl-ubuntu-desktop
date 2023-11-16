@@ -175,6 +175,13 @@ dd-osx: TAGS += -t 'ssh'
 dd-osx: TAGS += -t 'golang'
 dd-osx: desktop-tags
 
+.PHONY : bob-pi
+bob-pi: TAGS += -t 'packages'
+bob-pi: TAGS += -t 'sudo'
+bob-pi: TAGS += -t 'ssh'
+bob-pi: TAGS += -t 'dot'
+bob-pi: desktop-tags
+
 .PHONY : lint
 lint:
 	@(	\
