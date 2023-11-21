@@ -182,6 +182,16 @@ bob-pi: TAGS += -t 'ssh'
 bob-pi: TAGS += -t 'dot'
 bob-pi: desktop-tags
 
+.PHONY : bob-frame
+bob-frame: TAGS += -t 'wsl'
+bob-frame: TAGS += -t 'packages'
+bob-frame: TAGS += -t 'gui'
+bob-frame: TAGS += -t 'sudo'
+bob-frame: TAGS += -t 'ssh'
+bob-frame: TAGS += -t 'dot'
+bob-frame: TAGS += -t 'docker'
+bob-frame: desktop-tags
+
 .PHONY : lint
 lint:
 	@(	\
