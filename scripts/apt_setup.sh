@@ -2,4 +2,10 @@
 set -e
 
 apt-get update
-apt install gcc autoconf make python3-venv libffi-dev --no-install-recommends
+apt install --no-install-recommends \
+    autoconf \
+    gcc \
+    libffi-dev \
+    make \
+    python3-debian \
+    python3-venv
