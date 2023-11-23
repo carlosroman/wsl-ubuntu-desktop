@@ -1,8 +1,13 @@
 ---
 - name: Add Git Ubuntu repo
   become: true
-  ansible.builtin.apt_repository:
-    repo: ppa:git-core/ppa
+  ansible.builtin.deb822_repository:
+    name: git-core
+    uris: http://ppa.launchpad.net/git-core/ppa/ubuntu
+    types: deb
+    suites: "{{ ansible_distribution_release }}"
+    enabled: true
+    components: main
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xE1DD270288B4E6030699E45FA1715D88E1DF1F24
     state: present
-    filename: git-core
   when: ansible_distribution == 'Ubuntu'
