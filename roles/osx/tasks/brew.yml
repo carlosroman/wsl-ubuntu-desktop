@@ -12,7 +12,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/Homebrew/brew'
     dest: /opt/homebrew
-    version: 4.1.7
+    version: 4.1.22
     force: true
     single_branch: true
 
