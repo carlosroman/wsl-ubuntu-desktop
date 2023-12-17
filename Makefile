@@ -28,7 +28,7 @@ version:
 	@ansible --version
 
 venv:
-	@(python3 -m venv --system-site-packages $(PYTHON_VENV))
+	@(python3 -m venv --system-site-packages --clear --upgrade-deps $(PYTHON_VENV))
 	@(	\
 		$(PYTHON_SOURCE); \
 		python --version; \
