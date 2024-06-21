@@ -27,6 +27,7 @@
       - pass
       - pinentry
       - pinentry-mac
+      - protobuf
       - pyenv
       - rbenv
       - skopeo
@@ -34,8 +35,8 @@
       - tmux
       - tree
       - wget
-      - zsh-completions
       - ykman
+      - zsh-completions
     state: upgraded
 
 - name: Install k8s tools
