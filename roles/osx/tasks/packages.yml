@@ -4,6 +4,7 @@
     name:
       - ack
       - automake
+      - azure-cli
       - bash
       - cmake
       - coreutils
