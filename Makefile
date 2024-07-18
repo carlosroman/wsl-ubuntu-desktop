@@ -28,12 +28,14 @@ version:
 	@ansible --version
 
 venv:
-	@(python3 -m venv $(PYTHON_VENV))
+	@(python3 -m venv --system-site-packages $(PYTHON_VENV))
 	@(	\
 		$(PYTHON_SOURCE); \
 		python --version; \
 		pip --version; \
-		pip install --upgrade \
+		pip install \
+			--ignore-installed \
+			--upgrade \
 			pip \
 			wheel; \
 		pip --version; \
