@@ -5,9 +5,9 @@
 - name: Install CUDA
   become: true
   ansible.builtin.apt:
-    name: cuda
+    name: cuda=11.8.0-1
     update_cache: true
-    state: latest
+    state: present
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: Install CUDA dependecies
