@@ -1,21 +1,32 @@
 ---
-- name: Add MSFT APT key
-  become: true
-  ansible.builtin.apt_key:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
-- name: Add APT repo
+- name: Remove old vscode.list
   become: true
-  ansible.builtin.apt_repository:
-    repo: 'deb [arch=amd64]
-      https://packages.microsoft.com/repos/vscode
-      stable
-      main'
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/vscode.list
+    state: absent
+
+- name: Add VSCode APT repo
+  become: true
+  ansible.builtin.deb822_repository:
+    name: vscode
+    uris: https://packages.microsoft.com/repos/vscode
+    types: deb
+    components: main
+    suites: stable
+    architectures: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+    signed_by: https://packages.microsoft.com/keys/microsoft.asc
     state: present
-    filename: vscode
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  register: vscode_repo
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Only run "update_cache=yes" when VSCode APT repo updated
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - vscode_repo.changed
 
 - name: Install Visual Studio Code
   become: true
