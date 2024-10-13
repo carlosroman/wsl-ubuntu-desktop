@@ -194,6 +194,15 @@ bob-frame: TAGS += -t 'dot'
 bob-frame: TAGS += -t 'docker'
 bob-frame: desktop-tags
 
+.PHONY : bob-frame-nix
+bob-frame-nix: TAGS += -t 'docker'
+bob-frame-nix: TAGS += -t 'dot'
+bob-frame-nix: TAGS += -t 'packages'
+bob-frame-nix: TAGS += -t 'ssh'
+bob-frame-nix: TAGS += -t 'sudo'
+bob-frame-nix: TAGS += -t 'vscode'
+bob-frame-nix: desktop-tags
+
 .PHONY : lint
 lint:
 	@(	\
