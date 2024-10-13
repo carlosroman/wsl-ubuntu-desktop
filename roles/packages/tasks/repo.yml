@@ -1,5 +1,5 @@
 ---
-- name: Add Git Ubuntu repo
+- name: Add Git APT repo
   become: true
   ansible.builtin.deb822_repository:
     name: git-core
@@ -10,4 +10,13 @@
     components: main
     signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xE1DD270288B4E6030699E45FA1715D88E1DF1F24
     state: present
+  register: git_repo
   when: ansible_distribution == 'Ubuntu'
+
+- name: Only run "update_cache=yes" when Git APT repo updated
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - git_repo.changed
