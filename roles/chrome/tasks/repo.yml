@@ -1,19 +1,29 @@
 ---
-- name: Add Chrome APT key
+
+- name: Remove old chrome.list
   become: true
-  ansible.builtin.apt_key:
-    url: >
-        https://dl-ssl.google.com/linux/linux_signing_key.pub
-    state: present
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/chrome.list
+    state: absent
 
 - name: Add Chrome APT repo
   become: true
-  ansible.builtin.apt_repository:
-    repo: 'deb [arch=amd64]
-        http://dl.google.com/linux/chrome/deb/
-        stable
-        main'
+  ansible.builtin.deb822_repository:
+    name: chrome
+    uris: http://dl.google.com/linux/chrome/deb/
+    types: deb
+    components: main
+    suites: stable
+    architectures: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+    signed_by: https://dl-ssl.google.com/linux/linux_signing_key.pub
     state: present
-    filename: chrome
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  register: chrome_repo
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Only run "update_cache=yes" when Chrome APT repo updated
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - chrome_repo.changed
