@@ -1,18 +1,30 @@
 ---
-- name: Add Docker Ubuntu APT key
-  become: true
-  ansible.builtin.apt_key:
-    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-    url: https://download.docker.com/linux/ubuntu/gpg
-    keyring: /etc/apt/keyrings/docker.gpg
 
-- name: Add Docker Ubuntu repo
+- name: Remove old docker.list
   become: true
-  ansible.builtin.apt_repository:
-    repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg]
-      https://download.docker.com/linux/ubuntu
-      {{ ansible_lsb.codename }}
-      stable'
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/docker.list
+    state: absent
+
+- name: Add Docker APT repo
+  become: true
+  ansible.builtin.deb822_repository:
+    name: docker
+    uris: https://download.docker.com/linux/ubuntu
+    types: deb
+    enabled: true
+    components: stable
+    suites: "{{ ansible_distribution_release }}"
+    architectures: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+    signed_by: https://download.docker.com/linux/ubuntu/gpg
     state: present
-    filename: docker
+  register: docker_repo
   when: ansible_distribution == 'Ubuntu'
+
+- name: Only run "update_cache=yes" when Docker APT repo updated
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - docker_repo.changed
