@@ -205,6 +205,7 @@ bob-frame-nix: TAGS += -t 'ssh'
 bob-frame-nix: TAGS += -t 'sudo'
 bob-frame-nix: TAGS += -t 'vscode'
 bob-frame-nix: TAGS += -t 'chrome'
+bob-frame-nix: TAGS += -t 'keepassxc'
 bob-frame-nix: desktop-tags
 
 .PHONY : lint
