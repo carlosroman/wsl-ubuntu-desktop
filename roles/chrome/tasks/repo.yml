@@ -6,6 +6,12 @@
     path: /etc/apt/sources.list.d/chrome.list
     state: absent
 
+- name: Remove default Ubuntu Chrome
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/google-chrome.list
+    state: absent
+
 - name: Add Chrome APT repo
   become: true
   ansible.builtin.deb822_repository:
