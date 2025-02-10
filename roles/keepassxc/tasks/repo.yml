@@ -1,0 +1,22 @@
+---
+- name: Add KeePassXC APT repo
+  become: true
+  ansible.builtin.deb822_repository:
+    name: keepassxc
+    uris: https://ppa.launchpadcontent.net/phoerious/keepassxc/ubuntu
+    types: deb
+    suites: "{{ ansible_distribution_release }}"
+    enabled: true
+    components: main
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xD89C66D0E31FEA2874EBD20561922AB60068FCD6
+    state: present
+  register: keepassxc_repo
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Only run "update_cache=yes" when KeePassXC APT repo updated
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - keepassxc_repo.changed

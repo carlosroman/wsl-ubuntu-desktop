@@ -1,0 +1,6 @@
+---
+- name: Install KeePassXC
+  become: true
+  ansible.builtin.package:
+    name: keepassxc
+    state: latest

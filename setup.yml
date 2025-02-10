@@ -57,3 +57,4 @@
       vars:
         license_key: "{{ nri_license_key }}"
     - {role: nvidia-cuda, tags: [nvidia-cuda]}
+    - {role: keepassxc, tags: [keepassxc]}

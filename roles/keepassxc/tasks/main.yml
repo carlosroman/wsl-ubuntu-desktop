@@ -1,0 +1,6 @@
+---
+- name: Run KeePassXC repo install tasks
+  ansible.builtin.include_tasks: repo.yml
+
+- name: Run KeePassXC install tasks
+  ansible.builtin.include_tasks: install.yml

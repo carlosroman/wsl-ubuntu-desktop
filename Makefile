@@ -133,6 +133,9 @@ desktop-newrelic-infra: desktop-tags
 desktop-nvidia-cuda: TAGS = -t 'nvidia-cuda'
 desktop-nvidia-cuda: desktop-tags
 
+desktop-keepassxc: TAGS = -t 'keepassxc'
+desktop-keepassxc: desktop-tags
+
 desktop-tags:
 	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS};)
 
