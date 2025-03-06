@@ -1,6 +1,6 @@
 ansible-core==2.18.2
 cryptography==44.0.0
-Jinja2==3.1.5
+Jinja2==3.1.6
 MarkupSafe==2.1.5
 packaging==24.2
 pathspec==0.12.1
