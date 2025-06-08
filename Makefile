@@ -23,46 +23,49 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 
 ANSIBLE_PLAYBOOK_CMD	:= $(PYTHON_SOURCE); $(ANSIBLE_PLAYBOOK)
 
+UV_CLI	?= $(CURDIR)/bin/uv
+CLI_ARCH	:= $(shell uname -m)
+
+ifeq ($(shell uname -s),Darwin)
+	CLI_OS=darwin
+	CLI_UV_OS=apple-darwin
+	ifeq ($(shell uname -m),arm64)
+		CLI_ARCH=aarch64
+	endif
+else
+	CLI_OS=linux
+	CLI_UV_OS=unknown-linux-gnu
+endif
+
+bin/uv	: UV_VERSION=0.7.9
+bin/uv	:
+	@(mkdir -p $(CURDIR)/bin)
+	@(echo "Downloading https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz")
+	@(curl -L --fail --remote-name-all https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz{,.sha256})
+	@(shasum -a 256 -c uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz.sha256)
+	@(tar -xzvf uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz --strip-components=1 -C $(CURDIR)/bin/)
+	@(rm uv-*)
+	@($(UV_CLI) --version)
+
+# https://github.com/astral-sh/uv/releases/download/0.7.9/uv-aarch64-apple-darwin.tar.gz
+# https://github.com/astral-sh/uv/releases/download/0.7.9/uv-arm64-apple-darwin.tar.gz
 .PHONY : version
 version:
-	@ansible --version
-
-venv:
-	@(python3 -m venv --system-site-packages --clear --upgrade-deps $(PYTHON_VENV))
-	@(	\
-		$(PYTHON_SOURCE); \
-		python --version; \
-		pip --version; \
-		pip install \
-			--ignore-installed \
-			--upgrade \
-			pip \
-			wheel; \
-		pip --version; \
-	)
+	@($(UV_CLI) run ansible --version)
 
 .PHONY : setup/venv
 setup/venv: venv
 
 .PHONY : setup/python
-setup/python: setup/venv
-	@(	\
-		$(PYTHON_SOURCE); \
-		python --version; \
-		pip --version; \
-		pip install \
-		--upgrade \
-		--requirement $(CURDIR)/ansible-requirements.txt; \
-	)
+setup/python:
+	@($(UV_CLI) venv)
+	@($(UV_CLI) pip sync ansible-requirements.txt)
 
 .PHONY : setup/ansible
+setup/ansible: bin/uv
 setup/ansible: setup/python
-	@(	\
-		$(PYTHON_SOURCE); \
-		python --version; \
-		pip --version; \
-		ansible-galaxy install -r ansible-galaxy-requirements.yml; \
-	)
+setup/ansible:
+	@($(UV_CLI) run ansible-galaxy install -r $(CURDIR)/ansible-galaxy-requirements.yml)
 
 .PHONY : setup
 setup: setup/ansible
