@@ -25,3 +25,12 @@
     state: latest
     install_recommends: false
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Add user to render and video group
+  become: true
+  ansible.builtin.user:
+    name: '{{ current_username }}'
+    append: true
+    groups:
+      - render
+      - video
