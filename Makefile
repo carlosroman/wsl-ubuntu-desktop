@@ -1,5 +1,3 @@
-.PHONY: setup desktop desktop-*
-
 CHECk =
 ifdef CHECK
 CHECK = --check
@@ -7,10 +5,6 @@ endif
 
 UV_CLI	?= $(CURDIR)/bin/uv
 CLI_ARCH	:= $(shell uname -m)
-
-PYTHON_VENV		?= venv
-PYTHON_BIN		?= $(CURDIR)/$(PYTHON_VENV)/bin/python3
-PYTHON_SOURCE	?= . $(CURDIR)/$(PYTHON_VENV)/bin/activate
 
 ANSIBLE_EXTRA_ARGS := \
 		--vault-password-file=$(HOME)/.ansible_pass
@@ -45,14 +39,9 @@ bin/uv	:
 	@(rm uv-*)
 	@($(UV_CLI) --version)
 
-# https://github.com/astral-sh/uv/releases/download/0.7.9/uv-aarch64-apple-darwin.tar.gz
-# https://github.com/astral-sh/uv/releases/download/0.7.9/uv-arm64-apple-darwin.tar.gz
 .PHONY : version
 version:
 	@($(UV_CLI) run ansible --version)
-
-.PHONY : setup/venv
-setup/venv: venv
 
 .PHONY : setup/python
 setup/python:
@@ -67,6 +56,8 @@ setup/ansible:
 
 .PHONY : setup
 setup: setup/ansible
+
+.PHONY: desktop desktop-*
 
 desktop-debug: TAGS = -t 'debug'
 desktop-debug: desktop-tags
