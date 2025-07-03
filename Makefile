@@ -5,13 +5,14 @@ ifdef CHECK
 CHECK = --check
 endif
 
+UV_CLI	?= $(CURDIR)/bin/uv
+CLI_ARCH	:= $(shell uname -m)
 
 PYTHON_VENV		?= venv
 PYTHON_BIN		?= $(CURDIR)/$(PYTHON_VENV)/bin/python3
 PYTHON_SOURCE	?= . $(CURDIR)/$(PYTHON_VENV)/bin/activate
 
 ANSIBLE_EXTRA_ARGS := \
-		--extra-vars 'ansible_python_interpreter="$(CURDIR)/$(PYTHON_VENV)/bin/python"' \
 		--vault-password-file=$(HOME)/.ansible_pass
 
 ANSIBLE_PLAYBOOK := ansible-playbook \
@@ -21,10 +22,7 @@ ANSIBLE_PLAYBOOK := ansible-playbook \
 		$(CHECK) \
 		$(ANSIBLE_EXTRA_ARGS)
 
-ANSIBLE_PLAYBOOK_CMD	:= $(PYTHON_SOURCE); $(ANSIBLE_PLAYBOOK)
-
-UV_CLI	?= $(CURDIR)/bin/uv
-CLI_ARCH	:= $(shell uname -m)
+ANSIBLE_PLAYBOOK_CMD	:= $(UV_CLI) run $(ANSIBLE_PLAYBOOK)
 
 ifeq ($(shell uname -s),Darwin)
 	CLI_OS=darwin
@@ -140,11 +138,11 @@ desktop-keepassxc: TAGS = -t 'keepassxc'
 desktop-keepassxc: desktop-tags
 
 desktop-tags:
-	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS};)
+	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS})
 
 .PHONY : debug
 debug:
-	@(echo "$(ANSIBLE_PLAYBOOK_CMD) ${TAGS}";)
+	@(echo "$(ANSIBLE_PLAYBOOK_CMD) ${TAGS}")
 
 desktop:
 	@($(ANSIBLE_PLAYBOOK_CMD);)
