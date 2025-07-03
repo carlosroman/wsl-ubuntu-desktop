@@ -1,0 +1,49 @@
+name: Test Setup and Debug Commands
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-setup:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Verify Makefile syntax
+      run: |
+        # Basic syntax check for Makefile
+        make -n setup
+        make -n debug
+        make -n lint
+        echo "Makefile syntax is valid"
+
+    - name: Test setup command
+      run: |
+        make setup
+        echo "Setup command completed"
+
+    # - name: Test ansible facts command
+    #   run: |
+    #     make ansible-facts
+    #     echo "Ansible facts command completed"
+
+    - name: Test debug
+      run: |
+        make debug
+        echo "Debug command completed"
+
+    - name: Test version command
+      run: |
+        make version
+        echo "Version command completed"
+
+    # - name: Test lint command
+    #   run: |
+    #     make lint
+    #     echo "Lint command completed"

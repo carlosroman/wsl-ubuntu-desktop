@@ -211,14 +211,12 @@ bob-frame-nix: desktop-tags
 
 .PHONY : lint
 lint:
-	@(	\
-		$(PYTHON_SOURCE); \
-		yamllint .; \
-	)
+	@($(UV_CLI) run yamllint .)
 
 .PHONY : ansible-facts
 ansible-facts:
-	@(	\
-		$(PYTHON_SOURCE); \
-		ansible all $(ANSIBLE_EXTRA_ARGS) -m ansible.builtin.setup -a 'gather_subset=!all,!min,os_family,distribution,user,env,system,date_time,platform,lsb'; \
-	)
+	@($(UV_CLI) run \
+		ansible all $(ANSIBLE_EXTRA_ARGS) \
+		-m ansible.builtin.setup \
+		-a 'gather_subset=!all,!min,os_family,distribution,user,env,system,date_time,platform,lsb'\
+		)
