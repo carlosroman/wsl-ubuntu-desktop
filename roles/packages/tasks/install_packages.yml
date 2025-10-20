@@ -6,12 +6,29 @@
     cache_valid_time: 3600
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
-- name: Install generic packages
+- name: Install Debian generic packages
   ansible.builtin.package:
     name:
       - ack-grep
-      - automake
       - bind9-dnsutils
+      - libpq-dev
+      - libbz2-dev
+      - libevent-dev
+      - libncurses-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - zlib1g-dev
+      - libreadline-dev
+      - mingw-w64
+      - p7zip-full
+      - p7zip-rar
+      - pkg-config
+  when: ansible_os_family == 'Debian'
+
+- name: Install generic packages
+  ansible.builtin.package:
+    name:
+      - automake
       - ca-certificates
       - cmake
       - curl
@@ -27,21 +44,10 @@
       - iperf3
       - jq
       - keychain
-      - libbz2-dev
-      - libevent-dev
-      - libncurses-dev
-      - libpq-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - libssl-dev
       - libtool
       - m4
       - make
-      - mingw-w64
-      - p7zip-full
-      - p7zip-rar
       - pass
-      - pkg-config
       - sshfs
       - sshpass
       - sudo
@@ -51,7 +57,6 @@
       - unzip
       - vim
       - wget
-      - zlib1g-dev
     state: latest
   become: true
 
