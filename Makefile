@@ -128,6 +128,10 @@ desktop-nvidia-cuda: desktop-tags
 desktop-keepassxc: TAGS = -t 'keepassxc'
 desktop-keepassxc: desktop-tags
 
+desktop-amd-rocm: TAGS = -t 'amd-rocm'
+desktop-amd-rocm: desktop-tags
+
+
 desktop-tags:
 	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS})
 
@@ -199,6 +203,14 @@ bob-frame-nix: TAGS += -t 'vscode'
 bob-frame-nix: TAGS += -t 'chrome'
 bob-frame-nix: TAGS += -t 'keepassxc'
 bob-frame-nix: desktop-tags
+
+.PHONY : bob-ai/fedora
+bob-ai/fedora: TAGS += -t 'dot'
+bob-ai/fedora: TAGS += -t 'packages'
+bob-ai/fedora: TAGS += -t 'ssh'
+bob-ai/fedora: TAGS += -t 'sudo'
+bob-ai/fedora: TAGS += -t 'amd-rocm'
+bob-ai/fedora: desktop-tags
 
 .PHONY : lint
 lint:
