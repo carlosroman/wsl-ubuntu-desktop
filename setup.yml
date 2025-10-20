@@ -58,3 +58,8 @@
         license_key: "{{ nri_license_key }}"
     - {role: nvidia-cuda, tags: [nvidia-cuda]}
     - {role: keepassxc, tags: [keepassxc]}
+    - role: carlosroman.amd_rocm
+      tags: [amd-rocm]
+      vars:
+        amd_rocm_version: 7.0.2
+      become: true

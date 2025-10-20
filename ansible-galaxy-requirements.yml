@@ -1,3 +1,9 @@
 ---
+
+roles:
+  - name: carlosroman.amd_rocm
+    src: https://github.com/carlosroman/ansible-role-amd-rocm/
+    version: main
+
 collections:
   - community.general
