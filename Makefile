@@ -29,7 +29,7 @@ else
 	CLI_UV_OS=unknown-linux-gnu
 endif
 
-bin/uv	: UV_VERSION=0.7.9
+bin/uv	: UV_VERSION=0.9.18
 bin/uv	:
 	@(mkdir -p $(CURDIR)/bin)
 	@(echo "Downloading https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz")
@@ -203,6 +203,17 @@ bob-frame-nix: TAGS += -t 'vscode'
 bob-frame-nix: TAGS += -t 'chrome'
 bob-frame-nix: TAGS += -t 'keepassxc'
 bob-frame-nix: desktop-tags
+
+.PHONY : bob-ai/ubuntu
+bob-ai/ubuntu: TAGS += -t 'dot'
+bob-ai/ubuntu: TAGS += -t 'packages'
+bob-ai/ubuntu: TAGS += -t 'ssh'
+bob-ai/ubuntu: TAGS += -t 'sudo'
+bob-ai/ubuntu: TAGS += -t 'docker'
+bob-ai/ubuntu: TAGS += -t 'vscode'
+# bob-ai/ubuntu: TAGS += -t 'chrome'
+# bob-ai/ubuntu: TAGS += -t 'amd-rocm'
+bob-ai/ubuntu: desktop-tags
 
 .PHONY : bob-ai/fedora
 bob-ai/fedora: TAGS += -t 'dot'
