@@ -4,8 +4,8 @@ set -e
 apt-get update
 apt install --no-install-recommends \
     autoconf \
+    automake \
     gcc \
     libffi-dev \
     make \
-    python3-debian \
-    python3-venv
+    python3-debian
