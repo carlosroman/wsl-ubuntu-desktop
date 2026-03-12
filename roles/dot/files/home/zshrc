@@ -1,6 +1,6 @@
-# Add brew to PATH
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+# Managed by Ansible
+path=(/opt/homebrew/bin $path)
+path=(/opt/homebrew/sbin $path)
 
 # Enable zsh-completions
 if type brew &>/dev/null; then
@@ -15,3 +15,12 @@ alias last-status="echo $?"
 
 # Load direnv
 eval "$(direnv hook zsh)"
+
+# BEGIN SCFW MANAGED BLOCK
+alias npm="scfw run npm"
+alias pip="scfw run pip"
+alias poetry="scfw run poetry"
+export SCFW_DD_AGENT_LOG_PORT="10365"
+export SCFW_DD_LOG_LEVEL="ALLOW"
+export SCFW_HOME="/Users/carlos.roman/.scfw"
+# END SCFW MANAGED BLOCK
