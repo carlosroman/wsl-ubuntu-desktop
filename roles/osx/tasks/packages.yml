@@ -39,7 +39,7 @@
       - wget
       - ykman
       - zsh-completions
-    state: upgraded
+    state: latest
 
 - name: Install k8s tools
   community.general.homebrew:
@@ -49,7 +49,7 @@
       - kubectx
       - kubernetes-cli
       - vault
-    state: upgraded
+    state: latest
 
 - name: Install useful apps
   community.general.homebrew_cask:
