@@ -19,6 +19,7 @@
       - gpg2
       - graphviz
       - htop
+      - inlyne
       - iperf3
       - jq
       - keychain
