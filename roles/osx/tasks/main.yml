@@ -1,6 +1,9 @@
 ---
 - name: Run Brew install tasks
-  ansible.builtin.include_tasks: brew.yml
+  ansible.builtin.include_tasks:
+    file: brew.yml
+    apply:
+      become: true
 
 - name: Install default packages
   ansible.builtin.include_tasks: packages.yml
