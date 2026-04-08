@@ -45,14 +45,14 @@ version:
 
 .PHONY : setup/python
 setup/python:
-	@($(UV_CLI) venv)
-	@($(UV_CLI) pip sync ansible-requirements.txt)
+	@($(UV_CLI) venv --clear)
 
 .PHONY : setup/ansible
 setup/ansible: bin/uv
 setup/ansible: setup/python
 setup/ansible:
-	@($(UV_CLI) run ansible-galaxy install -r $(CURDIR)/ansible-galaxy-requirements.yml)
+	@($(UV_CLI) pip sync ansible-requirements.txt)
+	@($(UV_CLI) run ansible-galaxy install -r $(CURDIR)/ansible-galaxy-requirements.yml --force) 
 
 .PHONY : setup
 setup: setup/ansible
