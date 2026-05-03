@@ -9,8 +9,9 @@
       - docker-ce-cli
       - docker-compose-plugin
       - containerd.io
-      - qemu-user-static
+      - qemu-user
       - skopeo
+      - docker-buildx-plugin
     state: latest
 
 - name: Add user to Docker group
