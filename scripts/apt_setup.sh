@@ -7,5 +7,4 @@ apt install --no-install-recommends \
     automake \
     gcc \
     libffi-dev \
-    make \
-    python3-debian
+    make 
