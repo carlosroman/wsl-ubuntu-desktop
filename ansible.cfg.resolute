@@ -1,0 +1,8 @@
+[defaults]
+
+callback_enabled = timer
+hostfile = ./hosts.ini
+inventory = ./hosts.ini
+
+[privilege_escalation]
+become_exe = sudo.ws
