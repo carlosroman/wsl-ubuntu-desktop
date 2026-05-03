@@ -7,6 +7,7 @@
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: Install Debian generic packages
+  become: true
   ansible.builtin.package:
     name:
       - ack-grep
@@ -20,8 +21,8 @@
       - zlib1g-dev
       - libreadline-dev
       - mingw-w64
-      - p7zip-full
-      - p7zip-rar
+      - 7zip
+-     - 7zip-rar
       - pkg-config
   when: ansible_os_family == 'Debian'
 

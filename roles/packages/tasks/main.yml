@@ -8,11 +8,11 @@
 - name: Run Packages install native packages tasks
   ansible.builtin.include_tasks: install_packages.yml
 
-- name: Run Packages install pip packages
-  ansible.builtin.include_tasks: install_pip.yml
+#- name: Run Packages install pip packages
+#  ansible.builtin.include_tasks: install_pip.yml
 
-- name: Run Packages ADR install tasks
-  ansible.builtin.include_tasks: install_adr.yml
+# - name: Run Packages ADR install tasks
+#  ansible.builtin.include_tasks: install_adr.yml
 
 - name: Run Pacakges clean up tasks
   ansible.builtin.include_tasks: clean_up.yml
