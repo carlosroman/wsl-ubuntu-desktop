@@ -8,7 +8,7 @@
     suites: "{{ ansible_distribution_release }}"
     enabled: true
     components: main
-    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xE1DD270288B4E6030699E45FA1715D88E1DF1F24
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xe363c90f8f1b6217
     state: present
   register: git_repo
   when: ansible_distribution == 'Ubuntu'
