@@ -125,6 +125,9 @@ desktop-keepassxc: desktop-tags
 desktop-amd-rocm: TAGS = -t 'amd-rocm'
 desktop-amd-rocm: desktop-tags
 
+desktop-1password: TAGS = -t '1password'
+desktop-1password: desktop-tags
+
 desktop-tags: bin/uv
 	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS})
 

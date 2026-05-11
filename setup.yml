@@ -63,3 +63,6 @@
       vars:
         amd_rocm_version: 7.0.2
       become: true
+    - role: carlosroman.1password
+      tags: [1password]
+      become: true
