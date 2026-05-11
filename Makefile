@@ -29,30 +29,24 @@ else
 	CLI_UV_OS=unknown-linux-gnu
 endif
 
-bin/uv	: UV_VERSION=0.11.4
+bin/uv	: UV_VERSION=0.11.13
 bin/uv	:
 	@(mkdir -p $(CURDIR)/bin)
 	@(echo "Downloading https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz")
-	@(curl -L --fail --remote-name-all https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz{,.sha256})
+	@(wget -q https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz && wget -q https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz.sha256)
 	@(shasum -a 256 -c uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz.sha256)
 	@(tar -xzvf uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz --strip-components=1 -C $(CURDIR)/bin/)
 	@(rm uv-*)
 	@($(UV_CLI) --version)
 
 .PHONY : version
-version:
+version: bin/uv
 	@($(UV_CLI) run ansible --version)
-
-.PHONY : setup/python
-setup/python:
-	@($(UV_CLI) venv --clear)
 
 .PHONY : setup/ansible
 setup/ansible: bin/uv
-setup/ansible: setup/python
-setup/ansible:
-	@($(UV_CLI) pip sync ansible-requirements.txt)
-	@($(UV_CLI) run ansible-galaxy install -r $(CURDIR)/ansible-galaxy-requirements.yml --force) 
+	@($(UV_CLI) sync)
+	@($(UV_CLI) run ansible-galaxy install -r $(CURDIR)/ansible-galaxy-requirements.yml --force)
 
 .PHONY : setup
 setup: setup/ansible
@@ -131,16 +125,12 @@ desktop-keepassxc: desktop-tags
 desktop-amd-rocm: TAGS = -t 'amd-rocm'
 desktop-amd-rocm: desktop-tags
 
-
-desktop-tags:
+desktop-tags: bin/uv
 	@($(ANSIBLE_PLAYBOOK_CMD) ${TAGS})
 
 .PHONY : debug
 debug:
 	@(echo "$(ANSIBLE_PLAYBOOK_CMD) ${TAGS}")
-
-desktop:
-	@($(ANSIBLE_PLAYBOOK_CMD);)
 
 .PHONY : bob-book
 bob-book: TAGS += -t 'wsl'
@@ -224,11 +214,11 @@ bob-ai/fedora: TAGS += -t 'amd-rocm'
 bob-ai/fedora: desktop-tags
 
 .PHONY : lint
-lint:
+lint: bin/uv
 	@($(UV_CLI) run yamllint .)
 
 .PHONY : ansible-facts
-ansible-facts:
+ansible-facts: bin/uv
 	@($(UV_CLI) run \
 		ansible all $(ANSIBLE_EXTRA_ARGS) \
 		-m ansible.builtin.setup \
