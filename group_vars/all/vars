@@ -1,2 +1,1 @@
 ---
-nri_license_key: "{{ vault_nri_license_key }}"

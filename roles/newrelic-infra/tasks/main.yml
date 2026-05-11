@@ -1,6 +1,0 @@
----
-- name: Run New Relic add repo tasks
-  ansible.builtin.include_tasks: repo.yml
-
-- name: Run New Relic install tasks
-  ansible.builtin.include_tasks: install.yml
