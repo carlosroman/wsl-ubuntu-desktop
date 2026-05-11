@@ -1,0 +1,18 @@
+[project]
+name = "wsl-ubuntu-desktop"
+version = "0.1.0"
+description = "WSL Ubuntu Desktop Setup"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+dependencies = [
+  "ansible-core>=2.20",
+]
+[dependency-groups]
+lint = [
+    "ansible-lint",
+    "yamllint==1.38.0",
+]
+dev = [
+    {include-group = "lint"},
+]
