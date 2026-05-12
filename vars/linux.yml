@@ -1,5 +1,5 @@
 ---
 ssh:
   id_rsa:
-    prvt: "{{ vault_ssh.linux_id_rsa.prvt }}"
-    pub: "{{ vault_ssh.linux_id_rsa.pub }}"
+    prvt: "{{ lookup('community.general.onepassword', 'linux-ssh-key', field='id_rsa', vault=op_vault) }}"
+    pub: "{{ lookup('community.general.onepassword', 'linux-ssh-key', field='id_rsa.pub', vault=op_vault) }}"
