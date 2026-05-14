@@ -31,16 +31,43 @@
       tags:
         - always
 
-    - name: Debug ssh id_rsa
+    - name: Check if op CLI is available
+      ansible.builtin.command: op --version
+      register: op_check
+      changed_when: false
+      failed_when: false
+
+    - name: Fetch SSH keys from 1Password
+      ansible.builtin.set_fact:
+        ssh:
+          id_rsa:
+            prvt: "{{ lookup('community.general.onepassword', 'linux-ssh-key', field='id_rsa', vault=op_vault) }}"
+            pub: "{{ lookup('community.general.onepassword', 'linux-ssh-key', field='id_rsa.pub', vault=op_vault) }}"
+      when:
+        - op_check.rc == 0
+        - ansible_system == 'Linux'
+      ignore_errors: true
+
+    - name: Fetch SSH keys from 1Password (macOS)
+      ansible.builtin.set_fact:
+        ssh:
+          id_rsa:
+            prvt: "{{ lookup('community.general.onepassword', 'osx-ssh-key', field='id_rsa', vault=op_vault) }}"
+            pub: "{{ lookup('community.general.onepassword', 'osx-ssh-key', field='id_rsa.pub', vault=op_vault) }}"
+      when:
+        - op_check.rc == 0
+        - ansible_system == 'Darwin'
+      ignore_errors: true
+
+    - name: Warn if 1Password CLI is not available
       ansible.builtin.debug:
-        msg: "pre_task ssh.id_rsa.pub {{ ssh.id_rsa.pub }}"
-      tags:
-        - always
+        msg: "WARNING: 'op' CLI not found or not configured. SSH keys will not be set up."
+      when: op_check.rc != 0
 
   roles:
     - {role: debug, tags: [debug]}
     - {role: sudoers, tags: [sudo]}
-    - {role: ssh, tags: [ssh]}
+    - {role: ssh, tags: [ssh], when: ssh.id_rsa.prvt | length > 0}
     - {role: packages, tags: [packages]}
     - {role: dot, tags: [dot, bash]}
     - {role: wsl, tags: [wsl]}
