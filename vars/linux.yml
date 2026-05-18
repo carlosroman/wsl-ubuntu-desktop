@@ -1,5 +1,2 @@
 ---
-ssh:
-  id_rsa:
-    prvt: ""
-    pub: ""
+ssh_item_key: linux-ssh-key

@@ -34,35 +34,29 @@
     - name: Check if op CLI is available
       ansible.builtin.command: op --version
       register: op_check
-      changed_when: false
       failed_when: false
+      changed_when: false
+      tags:
+        - always
 
     - name: Fetch SSH keys from 1Password
       ansible.builtin.set_fact:
         ssh:
           id_rsa:
-            prvt: "{{ lookup('community.general.onepassword', 'linux-ssh-key', field='id_rsa', vault=op_vault) }}"
-            pub: "{{ lookup('community.general.onepassword', 'linux-ssh-key', field='id_rsa.pub', vault=op_vault) }}"
+            prvt: "{{ lookup('community.general.onepassword', ssh_item_key, field='id_rsa', vault=op_vault) }}"
+            pub: "{{ lookup('community.general.onepassword', ssh_item_key, field='id_rsa.pub', vault=op_vault) }}"
       when:
         - op_check.rc == 0
-        - ansible_system == 'Linux'
-      ignore_errors: true
-
-    - name: Fetch SSH keys from 1Password (macOS)
-      ansible.builtin.set_fact:
-        ssh:
-          id_rsa:
-            prvt: "{{ lookup('community.general.onepassword', 'osx-ssh-key', field='id_rsa', vault=op_vault) }}"
-            pub: "{{ lookup('community.general.onepassword', 'osx-ssh-key', field='id_rsa.pub', vault=op_vault) }}"
-      when:
-        - op_check.rc == 0
-        - ansible_system == 'Darwin'
-      ignore_errors: true
+      tags:
+        - always
 
     - name: Warn if 1Password CLI is not available
       ansible.builtin.debug:
         msg: "WARNING: 'op' CLI not found or not configured. SSH keys will not be set up."
       when: op_check.rc != 0
+      tags:
+        - always
+
 
   roles:
     - {role: debug, tags: [debug]}
