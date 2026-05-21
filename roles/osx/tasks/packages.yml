@@ -16,7 +16,6 @@
       - gcc
       - git
       - gnupg
-      - gpg2
       - graphviz
       - htop
       - inlyne
@@ -44,11 +43,8 @@
 - name: Install k8s tools
   community.general.homebrew:
     name:
-      - helm
       - k9s
-      - kubectx
       - kubernetes-cli
-      - vault
     state: latest
 
 - name: Install useful apps
