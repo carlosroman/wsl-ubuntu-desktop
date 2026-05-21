@@ -6,8 +6,7 @@ endif
 UV_CLI	?= $(CURDIR)/bin/uv
 CLI_ARCH	:= $(shell uname -m)
 
-ANSIBLE_EXTRA_ARGS := \
-		--vault-password-file=$(HOME)/.ansible_pass
+ANSIBLE_EXTRA_ARGS ?=
 
 ANSIBLE_PLAYBOOK := ansible-playbook \
 		setup.yml \
