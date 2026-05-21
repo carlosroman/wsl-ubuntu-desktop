@@ -9,10 +9,12 @@
     group: staff
 
 - name: Installing Brew locally
+  become: true
+  become_user: "{{ ansible_user_id }}"
   ansible.builtin.git:
     repo: 'https://github.com/Homebrew/brew'
     dest: /opt/homebrew
-    version: 5.1.5
+    version: 5.1.12
     force: true
     single_branch: true
 
@@ -20,6 +22,8 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
   loop:
     - /opt/homebrew/Cellar
     - /opt/homebrew/Frameworks
