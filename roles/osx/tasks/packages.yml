@@ -14,6 +14,7 @@
       - dos2unix
       - expect
       - gcc
+      - gh
       - git
       - gnupg
       - graphviz
