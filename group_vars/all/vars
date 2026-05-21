@@ -1,2 +1,6 @@
 ---
 op_vault: "Home lab"
+ssh:
+    id_rsa:
+        prvt: ''
+        pub: ''
