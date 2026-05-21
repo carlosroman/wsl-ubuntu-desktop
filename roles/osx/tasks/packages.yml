@@ -2,6 +2,7 @@
 - name: Install useful command tools
   community.general.homebrew:
     name:
+      - 1password-cli
       - ack
       - automake
       - azure-cli
