@@ -1,4 +1,5 @@
 # Managed by Ansible dot role
+export PATH="$HOME/.local/bin:$PATH"
 
 # last status
 alias last-status="echo $?"
@@ -15,6 +16,9 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="auto"
 export GIT_PS1_HIDE_IF_PWD_IGNORED=true
 export GIT_PS1_SHOWCOLORHINTS=true
+
+# Attach or create a new tmux session
+alias tmux-new-session='tmux new-session -A -s'
 
 # Load direnv
 eval "$(direnv hook bash)"

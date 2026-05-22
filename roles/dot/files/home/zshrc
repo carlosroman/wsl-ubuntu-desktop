@@ -1,6 +1,7 @@
 # Managed by Ansible
 path=(/opt/homebrew/bin $path)
 path=(/opt/homebrew/sbin $path)
+path=($HOME/.local/bin $path)
 
 # Enable zsh-completions
 if type brew &>/dev/null; then
@@ -10,12 +11,6 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# Last exit status
-alias last-status="echo $?"
-
-# Load direnv
-eval "$(direnv hook zsh)"
-
 # BEGIN SCFW MANAGED BLOCK
 alias npm="scfw run npm"
 alias pip="scfw run pip"
@@ -24,3 +19,19 @@ export SCFW_DD_AGENT_LOG_PORT="10365"
 export SCFW_DD_LOG_LEVEL="ALLOW"
 export SCFW_HOME="/Users/carlos.roman/.scfw"
 # END SCFW MANAGED BLOCK
+
+# tweak session times so you don't have to re-enter passwords every 5min
+export AWS_SESSION_TTL=24h
+export AWS_ASSUME_ROLE_TTL=1h
+
+# Use 1Password for SSH
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+
+# Attach or create a new tmux session
+alias tmux-new-session='tmux new-session -A -s'
+
+# Last exit status
+alias last-status="echo $?"
+
+# Load direnv
+eval "$(direnv hook zsh)"
