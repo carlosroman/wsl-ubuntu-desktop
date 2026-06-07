@@ -31,11 +31,19 @@
     force: true
   when: ansible_system == 'Darwin'
 
+- name: Check .ssh exists
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.ssh"
+  register: dot_ssh_dir_check
+
 - name: Copy .ssh/ssh_config file
   ansible.builtin.copy:
     src: home/.ssh/ssh_config
     dest: "{{ lookup('env','HOME') }}/.ssh/ssh_config"
     force: true
+  when:
+    - dot_ssh_dir_check.stat.isdir is defined
+    - dot_ssh_dir_check.stat.isdir
 
 - name: Copy profile.d/10-keychain.sh
   ansible.builtin.copy:
