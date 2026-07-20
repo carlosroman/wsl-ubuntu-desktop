@@ -212,6 +212,14 @@ bob-ai/fedora: TAGS += -t 'sudo'
 bob-ai/fedora: TAGS += -t 'amd-rocm'
 bob-ai/fedora: desktop-tags
 
+.PHONY : bob-elf
+bob-elf: TAGS += -t 'dot'
+bob-elf: TAGS += -t 'packages'
+bob-elf: TAGS += -t 'ssh'
+bob-elf: TAGS += -t '1password'
+bob-elf: TAGS += -t 'docker'
+bob-elf: desktop-tags
+
 .PHONY : lint
 lint: bin/uv
 	@($(UV_CLI) run yamllint .)
