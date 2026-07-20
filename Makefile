@@ -199,7 +199,7 @@ bob-ai/ubuntu: TAGS += -t 'packages'
 bob-ai/ubuntu: TAGS += -t 'ssh'
 bob-ai/ubuntu: TAGS += -t 'sudo'
 bob-ai/ubuntu: TAGS += -t 'docker'
-bob-ai/ubuntu: TAGS += -t 'vscode'
+# bob-ai/ubuntu: TAGS += -t 'vscode'
 # bob-ai/ubuntu: TAGS += -t 'chrome'
 # bob-ai/ubuntu: TAGS += -t 'amd-rocm'
 bob-ai/ubuntu: desktop-tags
