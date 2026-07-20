@@ -28,7 +28,7 @@ else
 	CLI_UV_OS=unknown-linux-gnu
 endif
 
-bin/uv	: UV_VERSION=0.11.13
+bin/uv	: UV_VERSION=0.11.29
 bin/uv	:
 	@(mkdir -p $(CURDIR)/bin)
 	@(echo "Downloading https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${CLI_ARCH}-${CLI_UV_OS}.tar.gz")
